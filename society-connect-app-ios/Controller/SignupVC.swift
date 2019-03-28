@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SignupVC.swift
 //  society-connect-app-ios
 //
 //  Created by Aman Chawla on 27/03/19.
@@ -8,13 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SignupVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        
     }
 
-
 }
-

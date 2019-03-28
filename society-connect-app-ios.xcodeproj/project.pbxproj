@@ -7,21 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6FA5EC39B737D0B634C1ADFF /* Pods_society_connect_app_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3988015D3C50571F239B41E3 /* Pods_society_connect_app_ios.framework */; };
 		92935536224B8DBE0083B9A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92935535224B8DBE0083B9A5 /* AppDelegate.swift */; };
-		92935538224B8DBE0083B9A5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92935537224B8DBE0083B9A5 /* ViewController.swift */; };
+		92935538224B8DBE0083B9A5 /* LaunchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92935537224B8DBE0083B9A5 /* LaunchVC.swift */; };
 		9293553B224B8DBE0083B9A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92935539224B8DBE0083B9A5 /* Main.storyboard */; };
 		9293553D224B8DC00083B9A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9293553C224B8DC00083B9A5 /* Assets.xcassets */; };
 		92935540224B8DC00083B9A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9293553E224B8DC00083B9A5 /* LaunchScreen.storyboard */; };
+		9293554C224B8F150083B9A5 /* Constents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9293554B224B8F150083B9A5 /* Constents.swift */; };
+		9293554E224B907E0083B9A5 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9293554D224B907E0083B9A5 /* LoginVC.swift */; };
+		92935550224B908D0083B9A5 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9293554F224B908D0083B9A5 /* SignupVC.swift */; };
+		92935552224BA35B0083B9A5 /* ServerConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92935551224BA35B0083B9A5 /* ServerConnect.swift */; };
+		92935554224CC89B0083B9A5 /* MainBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92935553224CC89B0083B9A5 /* MainBtn.swift */; };
+		92935556224CC9C20083B9A5 /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92935555224CC9C20083B9A5 /* Alertable.swift */; };
+		92935558224CCE070083B9A5 /* UserUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92935557224CCE070083B9A5 /* UserUtil.swift */; };
+		9293555B224CD1810083B9A5 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9293555A224CD1810083B9A5 /* Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3988015D3C50571F239B41E3 /* Pods_society_connect_app_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_society_connect_app_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7650F6411FA2A471286E8523 /* Pods-society-connect-app-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-society-connect-app-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-society-connect-app-ios/Pods-society-connect-app-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		92935532224B8DBE0083B9A5 /* society-connect-app-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "society-connect-app-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92935535224B8DBE0083B9A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		92935537224B8DBE0083B9A5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		92935537224B8DBE0083B9A5 /* LaunchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchVC.swift; sourceTree = "<group>"; };
 		9293553A224B8DBE0083B9A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9293553C224B8DC00083B9A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9293553F224B8DC00083B9A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92935541224B8DC00083B9A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9293554B224B8F150083B9A5 /* Constents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constents.swift; sourceTree = "<group>"; };
+		9293554D224B907E0083B9A5 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		9293554F224B908D0083B9A5 /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
+		92935551224BA35B0083B9A5 /* ServerConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerConnect.swift; sourceTree = "<group>"; };
+		92935553224CC89B0083B9A5 /* MainBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBtn.swift; sourceTree = "<group>"; };
+		92935555224CC9C20083B9A5 /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
+		92935557224CCE070083B9A5 /* UserUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUtil.swift; sourceTree = "<group>"; };
+		9293555A224CD1810083B9A5 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		CDEE710D1BF93FB5BA9A8420 /* Pods-society-connect-app-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-society-connect-app-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-society-connect-app-ios/Pods-society-connect-app-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +49,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FA5EC39B737D0B634C1ADFF /* Pods_society_connect_app_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		045043D7326D9E5610D9D14E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3988015D3C50571F239B41E3 /* Pods_society_connect_app_ios.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		38EA82DE8B44BA5B0E5791D6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7650F6411FA2A471286E8523 /* Pods-society-connect-app-ios.debug.xcconfig */,
+				CDEE710D1BF93FB5BA9A8420 /* Pods-society-connect-app-ios.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		92935529224B8DBE0083B9A5 = {
 			isa = PBXGroup;
 			children = (
 				92935534224B8DBE0083B9A5 /* society-connect-app-ios */,
 				92935533224B8DBE0083B9A5 /* Products */,
+				38EA82DE8B44BA5B0E5791D6 /* Pods */,
+				045043D7326D9E5610D9D14E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +94,62 @@
 		92935534224B8DBE0083B9A5 /* society-connect-app-ios */ = {
 			isa = PBXGroup;
 			children = (
+				92935559224CD1610083B9A5 /* Utility */,
+				9293554A224B8F020083B9A5 /* Resources */,
+				92935548224B8DDF0083B9A5 /* View */,
+				92935547224B8DD50083B9A5 /* Controller */,
+				92935549224B8DED0083B9A5 /* Storyboards */,
 				92935535224B8DBE0083B9A5 /* AppDelegate.swift */,
-				92935537224B8DBE0083B9A5 /* ViewController.swift */,
-				92935539224B8DBE0083B9A5 /* Main.storyboard */,
 				9293553C224B8DC00083B9A5 /* Assets.xcassets */,
-				9293553E224B8DC00083B9A5 /* LaunchScreen.storyboard */,
 				92935541224B8DC00083B9A5 /* Info.plist */,
 			);
 			path = "society-connect-app-ios";
+			sourceTree = "<group>";
+		};
+		92935547224B8DD50083B9A5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				92935537224B8DBE0083B9A5 /* LaunchVC.swift */,
+				9293554D224B907E0083B9A5 /* LoginVC.swift */,
+				9293554F224B908D0083B9A5 /* SignupVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		92935548224B8DDF0083B9A5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				92935553224CC89B0083B9A5 /* MainBtn.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		92935549224B8DED0083B9A5 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				92935539224B8DBE0083B9A5 /* Main.storyboard */,
+				9293553E224B8DC00083B9A5 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		9293554A224B8F020083B9A5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9293554B224B8F150083B9A5 /* Constents.swift */,
+				92935551224BA35B0083B9A5 /* ServerConnect.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		92935559224CD1610083B9A5 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				92935557224CCE070083B9A5 /* UserUtil.swift */,
+				92935555224CC9C20083B9A5 /* Alertable.swift */,
+				9293555A224CD1810083B9A5 /* Theme.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +159,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 92935544224B8DC00083B9A5 /* Build configuration list for PBXNativeTarget "society-connect-app-ios" */;
 			buildPhases = (
+				E8C7BE9180F72587E982B1F5 /* [CP] Check Pods Manifest.lock */,
 				9293552E224B8DBE0083B9A5 /* Sources */,
 				9293552F224B8DBE0083B9A5 /* Frameworks */,
 				92935530224B8DBE0083B9A5 /* Resources */,
+				C817FA21212D0BCBC61D0B2F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,13 +220,78 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C817FA21212D0BCBC61D0B2F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-society-connect-app-ios/Pods-society-connect-app-ios-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-society-connect-app-ios/Pods-society-connect-app-ios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E8C7BE9180F72587E982B1F5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-society-connect-app-ios-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9293552E224B8DBE0083B9A5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92935538224B8DBE0083B9A5 /* ViewController.swift in Sources */,
+				92935538224B8DBE0083B9A5 /* LaunchVC.swift in Sources */,
+				92935550224B908D0083B9A5 /* SignupVC.swift in Sources */,
+				9293554C224B8F150083B9A5 /* Constents.swift in Sources */,
+				9293554E224B907E0083B9A5 /* LoginVC.swift in Sources */,
+				92935552224BA35B0083B9A5 /* ServerConnect.swift in Sources */,
 				92935536224B8DBE0083B9A5 /* AppDelegate.swift in Sources */,
+				92935556224CC9C20083B9A5 /* Alertable.swift in Sources */,
+				9293555B224CD1810083B9A5 /* Theme.swift in Sources */,
+				92935558224CCE070083B9A5 /* UserUtil.swift in Sources */,
+				92935554224CC89B0083B9A5 /* MainBtn.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +435,7 @@
 		};
 		92935545224B8DC00083B9A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7650F6411FA2A471286E8523 /* Pods-society-connect-app-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -292,12 +448,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AmanChawla.society-connect-app-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		92935546224B8DC00083B9A5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CDEE710D1BF93FB5BA9A8420 /* Pods-society-connect-app-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -310,7 +467,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AmanChawla.society-connect-app-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
