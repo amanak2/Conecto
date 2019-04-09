@@ -13,12 +13,29 @@ import FacebookCore
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var navigationController: UINavigationController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        //FB_login
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        let isLoggedIn = UserUtil.fetchBool(forKey: "isLoggedIn")
+        
+        //app init
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if isLoggedIn == false {
+            let controller = storyboard.instantiateViewController(withIdentifier: "LaunchVC")
+            navigationController = UINavigationController(rootViewController: controller)
+        } else if isLoggedIn == true {
+            let controller = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
+            navigationController = UINavigationController(rootViewController: controller)
+        }
+        
+        navigationController?.isNavigationBarHidden = true
+        window?.rootViewController = navigationController
         
         return true
     }

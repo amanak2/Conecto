@@ -445,8 +445,7 @@
                     <connections>
                         <segue destination="j6e-t9-KqP" kind="relationship" relationship="viewControllers" id="icn-yh-cMI"/>
                         <segue destination="hXM-4F-cI3" kind="relationship" relationship="viewControllers" id="Skb-k8-HsD"/>
-                        <segue destination="Ki4-2K-6gj" kind="relationship" relationship="viewControllers" id="qac-59-dgh"/>
-                        <segue destination="uY6-sM-hbX" kind="relationship" relationship="viewControllers" id="H8d-xo-eTc"/>
+                        <segue destination="evm-mu-l9h" kind="relationship" relationship="viewControllers" id="5sX-ap-3mH"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HZc-hM-gKN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -471,27 +470,23 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aPe-hH-R9h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3142" y="-82"/>
+            <point key="canvasLocation" x="3143" y="-112"/>
         </scene>
-        <!--Exchange-->
-        <scene sceneID="eW8-WG-Qhb">
+        <!--Item-->
+        <scene sceneID="mAN-hO-c9f">
             <objects>
-                <viewControllerPlaceholder storyboardName="Exchange" id="Ki4-2K-6gj" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="QoA-lZ-MCs"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="etf-HT-3Ol" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="evm-mu-l9h" customClass="ExchangeVC" customModule="society_connect_app_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EtI-Zq-dAX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="RL9-tG-tKs"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="s0z-5d-gyZ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7g1-PX-1BD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3156" y="94"/>
-        </scene>
-        <!--Account-->
-        <scene sceneID="2l3-pP-Z0l">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Account" id="uY6-sM-hbX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="xYD-0D-5WN"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ao3-dF-W7s" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3148" y="264"/>
+            <point key="canvasLocation" x="3755" y="26"/>
         </scene>
     </scenes>
     <resources>

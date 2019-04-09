@@ -56,4 +56,23 @@ class UserUtil {
         let component = calender.dateComponents([.day , .month , .year], from: date!)
         return "\(component.day!)/\(component.month!)/\(component.year!)"
     }
+    
+    static func timeAgoInAgo(_ timeUTC: String) -> String? {
+        
+        let dateStringUTC = timeUTC
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "UTC")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        let date = dateFormatter.date(from: dateStringUTC)!
+        
+        let now = Date()
+        let formatter = DateComponentsFormatter()
+        formatter.calendar?.locale = Locale(identifier: "UTC")
+        formatter.unitsStyle = .brief
+        formatter.maximumUnitCount = 2
+        
+        let str = formatter.string(from: date, to: now)! + " ago"
+        
+        return str
+    }
 }

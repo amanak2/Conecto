@@ -7,43 +7,125 @@
 //
 
 import UIKit
-import Alamofire
 
 class ServerConnect {
     
-    var successBlock: ((_ statusCode: Int, _ response: DataResponse<Any>?) -> Void)?
-    var failureBlock: ((_ statusCode: Int, _ error: Error?) -> Void)?
+    let session = URLSession.shared
     
-    //MARK: Check Internet
-    class func isConnected() -> Bool {
-        return NetworkReachabilityManager()!.isReachable
+    enum HTTPMethod: String {
+        case get = "GET"
+        case post = "POST"
+        case patch = "PATCH"
+        case delete = "DELETE"
     }
     
-    //MARK: FB LOGIN
-    func fbLogin(url: String, token: String) {
+    enum Result<String> {
+        case successBlock
+        case failureBlock(String)
+    }
+    
+    fileprivate func handleNetworkResponse(_ response: HTTPURLResponse) -> Result<String> {
+        switch response.statusCode {
+        case 200...299: return .successBlock
+        case 401...500: return .failureBlock("Auth Error")
+        case 501...599: return .failureBlock("Bad Request")
+        case 600: return .failureBlock("Outdated")
+        default: return .failureBlock("FAIL")
+        }
+    }
+    
+    //MARK: LOGIN REQUESTS
+    func fbLogin(url: String, token: String, completion: @escaping (_ data: Data?, _ error: String?) -> ()) {
         
-        let headers: HTTPHeaders = [
-            "ContentType": "application/json"
-        ]
-        
-        let parameters: Parameters = [
+        let params: [String: Any] = [
             "accessToken": token
         ]
         
         let urlString = "\(BASE_URL)\(url)"
         let url = URL(string: urlString)
+        var request = URLRequest(url: url!)
         
-        Alamofire.request(url!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
-            .responseJSON { (response) in
-                switch response.result {
-                case .success(_):
-                    self.successBlock!((response.response?.statusCode)!, response)
-                    break
-                case .failure(let error):
-                    self.failureBlock!((response.response?.statusCode)!, error)
-                    break
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: params, options: []) else { return }
+        request.httpBody = httpBody
+        
+        session.dataTask(with: request) { (data, response, error) in
+            
+            if let response = response as? HTTPURLResponse {
+                let result = self.handleNetworkResponse(response)
+                switch result {
+                case .successBlock:
+                    guard let data = data else { return }
+                    completion(data, nil)
+                case .failureBlock(let networkError):
+                    completion(data, networkError)
                 }
-        }
+                
+            }
+            
+        }.resume()
     }
     
+    func registerReq(url: String, params: [String: Any], completion: @escaping (_ data: Data?, _ error: String?) -> ()) {
+        
+        let urlString = "\(BASE_URL)\(url)"
+        let url = URL(string: urlString)
+        var request = URLRequest(url: url!)
+        
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: params, options: []) else { return }
+        request.httpBody = httpBody
+        
+        session.dataTask(with: request) { (data, response, error) in
+            
+            if let response = response as? HTTPURLResponse {
+                let result = self.handleNetworkResponse(response)
+                switch result {
+                case .successBlock:
+                    guard let data = data else { return }
+                    completion(data, nil)
+                case .failureBlock(let networkError):
+                    completion(data, networkError)
+                }
+                
+            }
+            
+        }.resume()
+        
+    }
+    
+    func getRequest(url: String, completion: @escaping (_ data: Data?, _ error: String?) -> ()) {
+        
+        let urlString = "\(BASE_URL)\(url)"
+        let url = URL(string: urlString)
+        var request = URLRequest(url: url!)
+        
+        let authToken = UserUtil.fetchString(forKey: "token")
+        let token = "Token \(authToken ?? "")"
+        
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        
+        session.dataTask(with: request) { (data, response, error) in
+            
+            if let response = response as? HTTPURLResponse {
+                let result = self.handleNetworkResponse(response)
+                switch result {
+                case .successBlock:
+                    guard let data = data else { return }
+                    completion(data, nil)
+                case .failureBlock(let networkError):
+                    completion(nil, networkError)
+                }
+                
+            }
+            
+        }.resume()
+    }
+
 }

@@ -21,6 +21,8 @@ class Theme {
     
     
     //fonts
-    static let mediumFont = UIFont(name: "Avenir-Next-Medium", size: 18)
+    static let largeFont = UIFont.systemFont(ofSize: 18)
+    static let mediumFont = UIFont.systemFont(ofSize: 16)
+    static let smallFont = UIFont.systemFont(ofSize: 14)
     
 }
