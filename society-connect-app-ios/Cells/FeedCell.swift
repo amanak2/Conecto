@@ -54,18 +54,17 @@ class FeedCell: BaseCell {
         return lbl
     }()
     
-    let postText: UITextView = {
-        let lbl = UITextView()
+    let postText: UILabel = {
+        let lbl = UILabel()
         lbl.font = Theme.mediumFont
-        lbl.backgroundColor = UIColor.clear
-        lbl.isUserInteractionEnabled = false
-        //lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.numberOfLines = 0
+        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
     let postImg: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         return imageView
     }()

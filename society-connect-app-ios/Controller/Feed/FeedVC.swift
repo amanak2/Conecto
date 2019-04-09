@@ -132,6 +132,7 @@ extension FeedVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollec
                 guard let posts = response?.results else { return cell }
                 
                 cell.post = posts[indexPath.row]
+                cell.layoutIfNeeded()
                 
                 return cell
             }
@@ -142,7 +143,7 @@ extension FeedVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let aspect: CGFloat = 9/16
+        let aspect: CGFloat = 4/5
         let width = view.frame.width
         
         switch indexPath.section {
@@ -156,11 +157,11 @@ extension FeedVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollec
             let size = CGSize(width: approximaeWidth, height: 1000)
             let attributes = [NSAttributedString.Key.font: Theme.mediumFont]
             
-            let estimatedFrame = NSString(string: post.description ?? "").boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
+            let estimatedFrame = NSString(string: post.description!).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
             
             if post.photo1 != nil {
-                let height = (width + 16) * aspect
-                return CGSize(width: width, height: 60 + estimatedFrame.height + 8 + height + 51 + 14)
+                let height = (width) * aspect
+                return CGSize(width: width, height: 127 + estimatedFrame.height + height)
             }
             
             return CGSize(width: width, height: estimatedFrame.height + 127)
