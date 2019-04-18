@@ -127,5 +127,71 @@ class ServerConnect {
             
         }.resume()
     }
+    
+    func postRequest(url: String, params: [String: Any], completion: @escaping (_ data: Data?, _ error: String?) -> ()) {
+        
+        let urlString = "\(BASE_URL)\(url)"
+        let url = URL(string: urlString)
+        var request = URLRequest(url: url!)
+        
+        let authToken = UserUtil.fetchString(forKey: "token")
+        let token = "Token \(authToken ?? "")"
+        
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: params, options: []) else { return }
+        request.httpBody = httpBody
+        
+        session.dataTask(with: request) { (data, response, error) in
+            
+            if let response = response as? HTTPURLResponse {
+                let result = self.handleNetworkResponse(response)
+                switch result {
+                case .successBlock:
+                    guard let data = data else { return }
+                    completion(data, nil)
+                case .failureBlock(let networkError):
+                    completion(nil, networkError)
+                }
+                
+            }
+            
+        }.resume()
+    }
+    
+    func patchRequest(url: String, params: [String: Any], completion: @escaping (_ data: Data?, _ error: String?) -> ()) {
+        
+        let urlString = "\(BASE_URL)\(url)"
+        let url = URL(string: urlString)
+        var request = URLRequest(url: url!)
+        
+        let authToken = UserUtil.fetchString(forKey: "token")
+        let token = "Token \(authToken ?? "")"
+        
+        request.httpMethod = HTTPMethod.patch.rawValue
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: params, options: []) else { return }
+        request.httpBody = httpBody
+        
+        session.dataTask(with: request) { (data, response, error) in
+            
+            if let response = response as? HTTPURLResponse {
+                let result = self.handleNetworkResponse(response)
+                switch result {
+                case .successBlock:
+                    guard let data = data else { return }
+                    completion(data, nil)
+                case .failureBlock(let networkError):
+                    completion(nil, networkError)
+                }
+                
+            }
+            
+        }.resume()
+    }
 
 }

@@ -11,7 +11,7 @@ import Foundation
 class User: Codable {
     let username, email: String
     let id: Int
-    let society: Society
+    let society: Society?
     let firstName, lastName: String?
     let dateJoined: String
     let profilePic: String?

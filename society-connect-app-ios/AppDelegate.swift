@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         let isLoggedIn = UserUtil.fetchBool(forKey: "isLoggedIn")
+        let isSocietySelected = UserUtil.fetchBool(forKey: "isSocietySelected")
         
         //app init
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -29,9 +30,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if isLoggedIn == false {
             let controller = storyboard.instantiateViewController(withIdentifier: "LaunchVC")
             navigationController = UINavigationController(rootViewController: controller)
+            
         } else if isLoggedIn == true {
-            let controller = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
-            navigationController = UINavigationController(rootViewController: controller)
+            if isSocietySelected == false {
+                let controller = storyboard.instantiateViewController(withIdentifier: "SelectSocietyVC")
+                navigationController = UINavigationController(rootViewController: controller)
+                
+            } else if isSocietySelected == true {
+                let controller = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
+                navigationController = UINavigationController(rootViewController: controller)
+            }
         }
         
         navigationController?.isNavigationBarHidden = true

@@ -29,6 +29,51 @@
             </objects>
             <point key="canvasLocation" x="3826" y="-222"/>
         </scene>
+        <!--Create PostVC-->
+        <scene sceneID="9t3-a7-ggs">
+            <objects>
+                <viewController storyboardIdentifier="CreatePostVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gsA-Mx-EtT" customClass="CreatePostVC" customModule="society_connect_app_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PZl-Su-BWz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="8rV-1A-0D3"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ghQ-Wg-4To" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4660" y="-222.63868065967017"/>
+        </scene>
+        <!--PostVC-->
+        <scene sceneID="uEC-cl-uHh">
+            <objects>
+                <viewController storyboardIdentifier="PostVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="agJ-Iv-Q4y" customClass="PostVC" customModule="society_connect_app_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zwj-x6-TOg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="ZTf-vp-tJ2"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r92-ZH-hSQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5460" y="-224"/>
+        </scene>
+        <!--CommentVC-->
+        <scene sceneID="0j1-SW-dDa">
+            <objects>
+                <viewController storyboardIdentifier="CommentVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PdE-gK-wiU" customClass="CommentVC" customModule="society_connect_app_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bIx-Y0-ASf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="GTq-pQ-PjW"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DDo-cN-NIb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6286" y="-224"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="0sw-X1-nbK">
             <objects>

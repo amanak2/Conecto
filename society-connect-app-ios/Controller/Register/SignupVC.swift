@@ -64,7 +64,7 @@ class SignupVC: UIViewController, Alertable {
             UserUtil.saveBool(withValue: true, forKey: "isLoggedIn")
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
+            let controller = storyboard.instantiateViewController(withIdentifier: "SelectSocietyVC")
             self.navigationController?.pushViewController(controller, animated: true)
         }
         

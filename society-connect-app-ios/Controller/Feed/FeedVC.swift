@@ -42,6 +42,13 @@ class FeedVC: UIViewController, Alertable {
         getFeed()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = false
+        navigationController?.hidesBarsOnSwipe = true
+    }
+    
     private func setupNavbar() {
         
         navigationController?.navigationBar.barTintColor = Theme.tintColor
@@ -170,5 +177,22 @@ extension FeedVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let storyboard = UIStoryboard(name: "Feed", bundle: nil)
+        
+        switch indexPath.section {
+        case 0:
+            let controller = storyboard.instantiateViewController(withIdentifier: "CreatePostVC")
+            self.navigationController?.pushViewController(controller, animated: true)
+            
+        default:
+            
+            let controller = storyboard.instantiateViewController(withIdentifier: "PostVC")
+            self.navigationController?.pushViewController(controller, animated: true)
+            
+        }
     }
 }
