@@ -35,7 +35,7 @@ class SearchCell: BaseCell {
     
     let seprationView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.lightGray
+        view.backgroundColor = Theme.lightGrey
         return view
     }()
     

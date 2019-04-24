@@ -12,7 +12,7 @@ class Exchange: Codable {
     let id: Int
     let user: User
     let society: Society
-    let title, description, photo1, photo2, photo3, price: String
+    let title, description, photo1, photo2, photo3, price: String?
     let active, sold_out: Bool
     let views: Int
     let created, modified: String

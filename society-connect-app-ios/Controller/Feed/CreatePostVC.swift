@@ -8,10 +8,11 @@
 
 import UIKit
 
-class CreatePostVC: UIViewController, UITextViewDelegate, Alertable {
+class CreatePostVC: UIViewController, UITextViewDelegate, Alertable, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //MARK: DATA
     var post: Post?
+    var imagePicker = UIImagePickerController()
     
     //MARK: ELEMENTS
     let profileImg: UIImageView = {
@@ -39,6 +40,13 @@ class CreatePostVC: UIViewController, UITextViewDelegate, Alertable {
         return tv
     }()
     
+    let selectedImg: UIImageView = {
+        let img = UIImageView()
+        img.contentMode = .scaleAspectFill
+        img.layer.masksToBounds = true
+        return img
+    }()
+    
     //MARK VIEW CONTROLLER
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,11 +60,18 @@ class CreatePostVC: UIViewController, UITextViewDelegate, Alertable {
         view.addSubview(profileImg)
         view.addSubview(usernameLbl)
         view.addSubview(postTxt)
+        view.addSubview(selectedImg)
         
         view.addContraintWithFormat(format: "H:|-10-[v0(48)]-8-[v1]-10-|", views: profileImg, usernameLbl)
         view.addContraintWithFormat(format: "H:|-8-[v0]-8-|", views: postTxt)
         view.addContraintWithFormat(format: "V:|-8-[v0(48)]-8-[v1]", views: profileImg, postTxt)
         view.addContraintWithFormat(format: "V:|-16-[v0]", views: usernameLbl)
+        
+        view.addContraintWithFormat(format: "H:|[v0]|", views: selectedImg)
+        view.addConstraint(NSLayoutConstraint(item: selectedImg, attribute: .top, relatedBy: .equal, toItem: postTxt, attribute: .bottom, multiplier: 1, constant: 8))
+        
+        let height = view.frame.width * 4/5
+        view.addContraintWithFormat(format: "V:[v0(\(height))]", views: selectedImg)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -71,7 +86,7 @@ class CreatePostVC: UIViewController, UITextViewDelegate, Alertable {
         let titleLbl = UILabel()
         titleLbl.textColor = UIColor.white
         titleLbl.text = "Create Post"
-        titleLbl.font = Theme.largeFont
+        titleLbl.font = Theme.boldFont
         navigationItem.titleView = titleLbl
         
         let btn = UIButton()
@@ -91,7 +106,7 @@ class CreatePostVC: UIViewController, UITextViewDelegate, Alertable {
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(handleDone))
-        let imgBtn: UIBarButtonItem = UIBarButtonItem(title: "Add Image", style: .done, target: self, action: #selector(handleImgUpload))
+        let imgBtn: UIBarButtonItem = UIBarButtonItem(title: "Add Photo", style: .done, target: self, action: #selector(handleImgUpload))
         
         let items = [imgBtn, flexSpace, done]
         doneToolbar.items = items
@@ -144,7 +159,43 @@ class CreatePostVC: UIViewController, UITextViewDelegate, Alertable {
         createPost()
     }
     
+    
+    //MARK: SELECT IMAGE
     @objc func handleImgUpload() {
-        self.showAlert("Image Upload", "Going to open photolibrery ")
+        let alertController = UIAlertController()
+        imagePicker.delegate = self
+        
+        let cameraAction = UIAlertAction(title: "Camera", style: .default) { (cameraAction) in
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) == true {
+                self.imagePicker.sourceType = .camera
+                self.present(self.imagePicker, animated: true, completion: nil)
+            } else {
+                self.showAlert("Camera", "Camera is not available on this device or accesibility has been revoked!")
+            }
+        }
+        
+        let libraryAction = UIAlertAction(title: "Photo Library", style: .default) { (cameraAction) in
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary) == true {
+                self.imagePicker.sourceType = .photoLibrary
+                self.present(self.imagePicker, animated: true, completion: nil)
+            } else {
+                self.showAlert("Photo Library", "Photo Library is not available on this device or accesibility has been revoked!")
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addAction(cameraAction)
+        alertController.addAction(libraryAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImg = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            self.selectedImg.image = pickedImg
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }

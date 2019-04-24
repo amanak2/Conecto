@@ -34,7 +34,7 @@ class SelectSocietyCell: BaseCell {
     
     let imgView: UIImageView = {
         let img = UIImageView()
-        img.image = UIImage(named: "thumbnail")
+        img.backgroundColor = UIColor.blue
         img.contentMode = .scaleAspectFill
         return img
     }()

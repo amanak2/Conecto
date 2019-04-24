@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ExhangeResponse: Codable {
+class ExchangeResponse: Codable {
     
     let count: Int
     let next: String?

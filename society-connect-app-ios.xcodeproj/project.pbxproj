@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		6FA5EC39B737D0B634C1ADFF /* Pods_society_connect_app_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3988015D3C50571F239B41E3 /* Pods_society_connect_app_ios.framework */; };
+		921F8F8D2270402300A981CC /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F8F8C2270402300A981CC /* ProfileCell.swift */; };
+		921F8F912270890800A981CC /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F8F902270890800A981CC /* EditProfileVC.swift */; };
+		921F8F9322708B6E00A981CC /* Protocals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F8F9222708B6E00A981CC /* Protocals.swift */; };
 		92651707225C780700D74C5F /* PostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92651706225C780700D74C5F /* PostResponse.swift */; };
 		9271409A224E222C003F0088 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92714099224E222C003F0088 /* CardView.swift */; };
 		9271409F224E35BD003F0088 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9271409E224E35BD003F0088 /* TabBarVC.swift */; };
@@ -55,6 +58,9 @@
 /* Begin PBXFileReference section */
 		3988015D3C50571F239B41E3 /* Pods_society_connect_app_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_society_connect_app_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7650F6411FA2A471286E8523 /* Pods-society-connect-app-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-society-connect-app-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-society-connect-app-ios/Pods-society-connect-app-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		921F8F8C2270402300A981CC /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		921F8F902270890800A981CC /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
+		921F8F9222708B6E00A981CC /* Protocals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocals.swift; sourceTree = "<group>"; };
 		92651706225C780700D74C5F /* PostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostResponse.swift; sourceTree = "<group>"; };
 		92714099224E222C003F0088 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		9271409E224E35BD003F0088 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
@@ -148,6 +154,7 @@
 			children = (
 				92742C5F2258C98300F68AFC /* BaseCell.swift */,
 				92742C612258E02E00F68AFC /* FeedCell.swift */,
+				921F8F8C2270402300A981CC /* ProfileCell.swift */,
 				92742C63225A0D2200F68AFC /* CreatePostCell.swift */,
 				92CE4FF9225F593900634C68 /* SearchCell.swift */,
 				92CE4FFD225F598700634C68 /* ExchangeCell.swift */,
@@ -256,6 +263,7 @@
 				92935557224CCE070083B9A5 /* UserUtil.swift */,
 				92935555224CC9C20083B9A5 /* Alertable.swift */,
 				9293555A224CD1810083B9A5 /* Theme.swift */,
+				921F8F9222708B6E00A981CC /* Protocals.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -291,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				92E7FB18225897C300BDA57A /* AccountVC.swift */,
+				921F8F902270890800A981CC /* EditProfileVC.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -434,6 +443,7 @@
 				92CE4FF0225CBED400634C68 /* SelectSocietyCell.swift in Sources */,
 				92935550224B908D0083B9A5 /* SignupVC.swift in Sources */,
 				92742C6B225A28DE00F68AFC /* Society.swift in Sources */,
+				921F8F912270890800A981CC /* EditProfileVC.swift in Sources */,
 				9293554C224B8F150083B9A5 /* Constents.swift in Sources */,
 				92CE4FF2225E06C000634C68 /* SocietyResponse.swift in Sources */,
 				92742C602258C98300F68AFC /* BaseCell.swift in Sources */,
@@ -457,11 +467,13 @@
 				92935558224CCE070083B9A5 /* UserUtil.swift in Sources */,
 				92D0997322686AAE00149CEA /* CommentVC.swift in Sources */,
 				92742C5D2258C77800F68AFC /* UIViewExt.swift in Sources */,
+				921F8F9322708B6E00A981CC /* Protocals.swift in Sources */,
 				9271409A224E222C003F0088 /* CardView.swift in Sources */,
 				92CE4FF8225F450500634C68 /* ExchangeResponse.swift in Sources */,
 				92CE4FF6225F429E00634C68 /* Exchange.swift in Sources */,
 				92D0996F226866A500149CEA /* CreatePostVC.swift in Sources */,
 				92742C64225A0D2200F68AFC /* CreatePostCell.swift in Sources */,
+				921F8F8D2270402300A981CC /* ProfileCell.swift in Sources */,
 				9271409F224E35BD003F0088 /* TabBarVC.swift in Sources */,
 				92935554224CC89B0083B9A5 /* MainBtn.swift in Sources */,
 			);

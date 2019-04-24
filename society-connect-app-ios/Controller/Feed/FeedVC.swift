@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SDWebImage
 
 class FeedVC: UIViewController, Alertable {
 
@@ -57,7 +56,7 @@ class FeedVC: UIViewController, Alertable {
         let titleLbl = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width - 32, height: view.frame.height))
         titleLbl.textColor = UIColor.white
         titleLbl.text = "Connect"
-        titleLbl.font = Theme.largeFont
+        titleLbl.font = Theme.boldFont
         navigationItem.titleView = titleLbl
         
         let btn = UIButton()
