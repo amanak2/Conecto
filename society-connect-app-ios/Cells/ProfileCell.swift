@@ -14,7 +14,7 @@ class ProfileCell: BaseCell {
     //MARK: DATA
     var delegate: CellBtnPress?
     
-    var user: User? {
+    var user: UserModel? {
         didSet {
             if user?.firstName != "" {
                 self.nameLbl.text = "\(user?.firstName ?? "") \(user?.lastName ?? "")"

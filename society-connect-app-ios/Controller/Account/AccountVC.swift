@@ -155,9 +155,9 @@ extension AccountVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         default:
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell2", for: indexPath) as? FeedCell {
                 
-                guard let post = postResponse?.results[indexPath.row] else { return cell }
-                
-                cell.post = post
+//                guard let post = postResponse?.results[indexPath.row] else { return cell }
+//                
+//                cell.post = post
                 
                 return cell
             }
@@ -182,7 +182,7 @@ extension AccountVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
             let size = CGSize(width: approximaeWidth, height: 1000)
             let attributes = [NSAttributedString.Key.font: Theme.mediumFont]
             
-            let estimatedFrame = NSString(string: post.description!).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
+            let estimatedFrame = NSString(string: post.desc!).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
             
             if post.photo1 != nil {
                 let height = (width) * aspect

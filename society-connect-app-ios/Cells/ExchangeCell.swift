@@ -12,7 +12,7 @@ import SDWebImage
 class ExchangeCell: BaseCell {
     
     //MARK: DATA
-    var exchange: Exchange? {
+    var exchange: ExchangeModel? {
         didSet {
             
             titleLbl.text = exchange?.title

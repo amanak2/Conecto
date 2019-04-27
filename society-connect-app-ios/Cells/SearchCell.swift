@@ -11,7 +11,7 @@ import UIKit
 class SearchCell: BaseCell {
     
     //MARK: DATA
-    var user: User? {
+    var user: UserModel? {
         didSet {
             usernameLbl.text = user?.username
         }

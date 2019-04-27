@@ -11,6 +11,17 @@
 		921F8F8D2270402300A981CC /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F8F8C2270402300A981CC /* ProfileCell.swift */; };
 		921F8F912270890800A981CC /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F8F902270890800A981CC /* EditProfileVC.swift */; };
 		921F8F9322708B6E00A981CC /* Protocals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F8F9222708B6E00A981CC /* Protocals.swift */; };
+		921F8F9622719A7200A981CC /* society-connect-app-ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 921F8F9422719A7200A981CC /* society-connect-app-ios.xcdatamodeld */; };
+		921F8F9822719AB000A981CC /* PresistentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F8F9722719AB000A981CC /* PresistentService.swift */; };
+		921F8FC22271E1C000A981CC /* Society+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F8FBA2271E1C000A981CC /* Society+CoreDataClass.swift */; };
+		921F8FC32271E1C000A981CC /* Society+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F8FBB2271E1C000A981CC /* Society+CoreDataProperties.swift */; };
+		921F8FC42271E1C000A981CC /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F8FBC2271E1C000A981CC /* User+CoreDataClass.swift */; };
+		921F8FC52271E1C000A981CC /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F8FBD2271E1C000A981CC /* User+CoreDataProperties.swift */; };
+		921F8FC62271E1C000A981CC /* Exchange+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F8FBE2271E1C000A981CC /* Exchange+CoreDataClass.swift */; };
+		921F8FC72271E1C000A981CC /* Exchange+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F8FBF2271E1C000A981CC /* Exchange+CoreDataProperties.swift */; };
+		921F8FC82271E1C000A981CC /* Post+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F8FC02271E1C000A981CC /* Post+CoreDataClass.swift */; };
+		921F8FC92271E1C000A981CC /* Post+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F8FC12271E1C000A981CC /* Post+CoreDataProperties.swift */; };
+		921F8FCC2271E3D300A981CC /* Synchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F8FCB2271E3D300A981CC /* Synchronizer.swift */; };
 		92651707225C780700D74C5F /* PostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92651706225C780700D74C5F /* PostResponse.swift */; };
 		9271409A224E222C003F0088 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92714099224E222C003F0088 /* CardView.swift */; };
 		9271409F224E35BD003F0088 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9271409E224E35BD003F0088 /* TabBarVC.swift */; };
@@ -18,9 +29,9 @@
 		92742C602258C98300F68AFC /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92742C5F2258C98300F68AFC /* BaseCell.swift */; };
 		92742C622258E02E00F68AFC /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92742C612258E02E00F68AFC /* FeedCell.swift */; };
 		92742C64225A0D2200F68AFC /* CreatePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92742C63225A0D2200F68AFC /* CreatePostCell.swift */; };
-		92742C67225A159C00F68AFC /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92742C66225A159C00F68AFC /* Post.swift */; };
-		92742C69225A260900F68AFC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92742C68225A260900F68AFC /* User.swift */; };
-		92742C6B225A28DE00F68AFC /* Society.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92742C6A225A28DE00F68AFC /* Society.swift */; };
+		92742C67225A159C00F68AFC /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92742C66225A159C00F68AFC /* PostModel.swift */; };
+		92742C69225A260900F68AFC /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92742C68225A260900F68AFC /* UserModel.swift */; };
+		92742C6B225A28DE00F68AFC /* SocietyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92742C6A225A28DE00F68AFC /* SocietyModel.swift */; };
 		92935536224B8DBE0083B9A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92935535224B8DBE0083B9A5 /* AppDelegate.swift */; };
 		92935538224B8DBE0083B9A5 /* LaunchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92935537224B8DBE0083B9A5 /* LaunchVC.swift */; };
 		9293553B224B8DBE0083B9A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92935539224B8DBE0083B9A5 /* Main.storyboard */; };
@@ -38,7 +49,7 @@
 		92CE4FF0225CBED400634C68 /* SelectSocietyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CE4FEF225CBED400634C68 /* SelectSocietyCell.swift */; };
 		92CE4FF2225E06C000634C68 /* SocietyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CE4FF1225E06C000634C68 /* SocietyResponse.swift */; };
 		92CE4FF4225E097100634C68 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CE4FF3225E097100634C68 /* UserResponse.swift */; };
-		92CE4FF6225F429E00634C68 /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CE4FF5225F429E00634C68 /* Exchange.swift */; };
+		92CE4FF6225F429E00634C68 /* ExchangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CE4FF5225F429E00634C68 /* ExchangeModel.swift */; };
 		92CE4FF8225F450500634C68 /* ExchangeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CE4FF7225F450400634C68 /* ExchangeResponse.swift */; };
 		92CE4FFA225F593900634C68 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CE4FF9225F593900634C68 /* SearchCell.swift */; };
 		92CE4FFE225F598700634C68 /* ExchangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CE4FFD225F598700634C68 /* ExchangeCell.swift */; };
@@ -61,6 +72,17 @@
 		921F8F8C2270402300A981CC /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		921F8F902270890800A981CC /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		921F8F9222708B6E00A981CC /* Protocals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocals.swift; sourceTree = "<group>"; };
+		921F8F9522719A7200A981CC /* society-connect-app-ios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "society-connect-app-ios.xcdatamodel"; sourceTree = "<group>"; };
+		921F8F9722719AB000A981CC /* PresistentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresistentService.swift; sourceTree = "<group>"; };
+		921F8FBA2271E1C000A981CC /* Society+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Society+CoreDataClass.swift"; sourceTree = "<group>"; };
+		921F8FBB2271E1C000A981CC /* Society+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Society+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		921F8FBC2271E1C000A981CC /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		921F8FBD2271E1C000A981CC /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		921F8FBE2271E1C000A981CC /* Exchange+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exchange+CoreDataClass.swift"; sourceTree = "<group>"; };
+		921F8FBF2271E1C000A981CC /* Exchange+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exchange+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		921F8FC02271E1C000A981CC /* Post+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+CoreDataClass.swift"; sourceTree = "<group>"; };
+		921F8FC12271E1C000A981CC /* Post+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		921F8FCB2271E3D300A981CC /* Synchronizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Synchronizer.swift; sourceTree = "<group>"; };
 		92651706225C780700D74C5F /* PostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostResponse.swift; sourceTree = "<group>"; };
 		92714099224E222C003F0088 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		9271409E224E35BD003F0088 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
@@ -68,9 +90,9 @@
 		92742C5F2258C98300F68AFC /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		92742C612258E02E00F68AFC /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		92742C63225A0D2200F68AFC /* CreatePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostCell.swift; sourceTree = "<group>"; };
-		92742C66225A159C00F68AFC /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		92742C68225A260900F68AFC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		92742C6A225A28DE00F68AFC /* Society.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Society.swift; sourceTree = "<group>"; };
+		92742C66225A159C00F68AFC /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
+		92742C68225A260900F68AFC /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		92742C6A225A28DE00F68AFC /* SocietyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocietyModel.swift; sourceTree = "<group>"; };
 		92935532224B8DBE0083B9A5 /* society-connect-app-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "society-connect-app-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92935535224B8DBE0083B9A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92935537224B8DBE0083B9A5 /* LaunchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchVC.swift; sourceTree = "<group>"; };
@@ -90,7 +112,7 @@
 		92CE4FEF225CBED400634C68 /* SelectSocietyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSocietyCell.swift; sourceTree = "<group>"; };
 		92CE4FF1225E06C000634C68 /* SocietyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocietyResponse.swift; sourceTree = "<group>"; };
 		92CE4FF3225E097100634C68 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
-		92CE4FF5225F429E00634C68 /* Exchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exchange.swift; sourceTree = "<group>"; };
+		92CE4FF5225F429E00634C68 /* ExchangeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeModel.swift; sourceTree = "<group>"; };
 		92CE4FF7225F450400634C68 /* ExchangeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeResponse.swift; sourceTree = "<group>"; };
 		92CE4FF9225F593900634C68 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		92CE4FFD225F598700634C68 /* ExchangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeCell.swift; sourceTree = "<group>"; };
@@ -137,6 +159,21 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		921F8F992271AC0300A981CC /* CoreDataModels */ = {
+			isa = PBXGroup;
+			children = (
+				921F8FBA2271E1C000A981CC /* Society+CoreDataClass.swift */,
+				921F8FBB2271E1C000A981CC /* Society+CoreDataProperties.swift */,
+				921F8FBC2271E1C000A981CC /* User+CoreDataClass.swift */,
+				921F8FBD2271E1C000A981CC /* User+CoreDataProperties.swift */,
+				921F8FBE2271E1C000A981CC /* Exchange+CoreDataClass.swift */,
+				921F8FBF2271E1C000A981CC /* Exchange+CoreDataProperties.swift */,
+				921F8FC02271E1C000A981CC /* Post+CoreDataClass.swift */,
+				921F8FC12271E1C000A981CC /* Post+CoreDataProperties.swift */,
+			);
+			path = CoreDataModels;
+			sourceTree = "<group>";
+		};
 		9271409D224E357D003F0088 /* Register */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,10 +207,10 @@
 				92CE4FF1225E06C000634C68 /* SocietyResponse.swift */,
 				92CE4FF3225E097100634C68 /* UserResponse.swift */,
 				92CE4FF7225F450400634C68 /* ExchangeResponse.swift */,
-				92742C66225A159C00F68AFC /* Post.swift */,
-				92742C68225A260900F68AFC /* User.swift */,
-				92742C6A225A28DE00F68AFC /* Society.swift */,
-				92CE4FF5225F429E00634C68 /* Exchange.swift */,
+				92742C66225A159C00F68AFC /* PostModel.swift */,
+				92742C68225A260900F68AFC /* UserModel.swift */,
+				92742C6A225A28DE00F68AFC /* SocietyModel.swift */,
+				92CE4FF5225F429E00634C68 /* ExchangeModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -199,6 +236,7 @@
 		92935534224B8DBE0083B9A5 /* society-connect-app-ios */ = {
 			isa = PBXGroup;
 			children = (
+				921F8F992271AC0300A981CC /* CoreDataModels */,
 				92742C65225A158500F68AFC /* Model */,
 				92935559224CD1610083B9A5 /* Utility */,
 				9293554A224B8F020083B9A5 /* Resources */,
@@ -209,6 +247,7 @@
 				92935535224B8DBE0083B9A5 /* AppDelegate.swift */,
 				9293553C224B8DC00083B9A5 /* Assets.xcassets */,
 				92935541224B8DC00083B9A5 /* Info.plist */,
+				921F8F9422719A7200A981CC /* society-connect-app-ios.xcdatamodeld */,
 			);
 			path = "society-connect-app-ios";
 			sourceTree = "<group>";
@@ -252,6 +291,8 @@
 			children = (
 				9293554B224B8F150083B9A5 /* Constents.swift */,
 				92935551224BA35B0083B9A5 /* ServerConnect.swift */,
+				921F8FCB2271E3D300A981CC /* Synchronizer.swift */,
+				921F8F9722719AB000A981CC /* PresistentService.swift */,
 				92742C5C2258C77800F68AFC /* UIViewExt.swift */,
 			);
 			path = Resources;
@@ -442,7 +483,10 @@
 				92935538224B8DBE0083B9A5 /* LaunchVC.swift in Sources */,
 				92CE4FF0225CBED400634C68 /* SelectSocietyCell.swift in Sources */,
 				92935550224B908D0083B9A5 /* SignupVC.swift in Sources */,
-				92742C6B225A28DE00F68AFC /* Society.swift in Sources */,
+				921F8FC32271E1C000A981CC /* Society+CoreDataProperties.swift in Sources */,
+				92742C6B225A28DE00F68AFC /* SocietyModel.swift in Sources */,
+				921F8FC22271E1C000A981CC /* Society+CoreDataClass.swift in Sources */,
+				921F8F9622719A7200A981CC /* society-connect-app-ios.xcdatamodeld in Sources */,
 				921F8F912270890800A981CC /* EditProfileVC.swift in Sources */,
 				9293554C224B8F150083B9A5 /* Constents.swift in Sources */,
 				92CE4FF2225E06C000634C68 /* SocietyResponse.swift in Sources */,
@@ -453,27 +497,35 @@
 				92CE4FF4225E097100634C68 /* UserResponse.swift in Sources */,
 				92CE4FFA225F593900634C68 /* SearchCell.swift in Sources */,
 				92935536224B8DBE0083B9A5 /* AppDelegate.swift in Sources */,
+				921F8FC72271E1C000A981CC /* Exchange+CoreDataProperties.swift in Sources */,
+				921F8FC52271E1C000A981CC /* User+CoreDataProperties.swift in Sources */,
 				92E7FB132258978000BDA57A /* SearchVC.swift in Sources */,
+				921F8FC62271E1C000A981CC /* Exchange+CoreDataClass.swift in Sources */,
 				92E7FB0E2258970900BDA57A /* FeedVC.swift in Sources */,
 				92CE4FFE225F598700634C68 /* ExchangeCell.swift in Sources */,
-				92742C69225A260900F68AFC /* User.swift in Sources */,
+				92742C69225A260900F68AFC /* UserModel.swift in Sources */,
 				92D0997122686A9B00149CEA /* PostVC.swift in Sources */,
 				92E7FB16225897A600BDA57A /* ExchangeVC.swift in Sources */,
 				92742C622258E02E00F68AFC /* FeedCell.swift in Sources */,
-				92742C67225A159C00F68AFC /* Post.swift in Sources */,
+				921F8FC42271E1C000A981CC /* User+CoreDataClass.swift in Sources */,
+				92742C67225A159C00F68AFC /* PostModel.swift in Sources */,
 				92935556224CC9C20083B9A5 /* Alertable.swift in Sources */,
 				92651707225C780700D74C5F /* PostResponse.swift in Sources */,
+				921F8FCC2271E3D300A981CC /* Synchronizer.swift in Sources */,
 				9293555B224CD1810083B9A5 /* Theme.swift in Sources */,
 				92935558224CCE070083B9A5 /* UserUtil.swift in Sources */,
 				92D0997322686AAE00149CEA /* CommentVC.swift in Sources */,
 				92742C5D2258C77800F68AFC /* UIViewExt.swift in Sources */,
+				921F8FC82271E1C000A981CC /* Post+CoreDataClass.swift in Sources */,
 				921F8F9322708B6E00A981CC /* Protocals.swift in Sources */,
 				9271409A224E222C003F0088 /* CardView.swift in Sources */,
 				92CE4FF8225F450500634C68 /* ExchangeResponse.swift in Sources */,
-				92CE4FF6225F429E00634C68 /* Exchange.swift in Sources */,
+				92CE4FF6225F429E00634C68 /* ExchangeModel.swift in Sources */,
+				921F8FC92271E1C000A981CC /* Post+CoreDataProperties.swift in Sources */,
 				92D0996F226866A500149CEA /* CreatePostVC.swift in Sources */,
 				92742C64225A0D2200F68AFC /* CreatePostCell.swift in Sources */,
 				921F8F8D2270402300A981CC /* ProfileCell.swift in Sources */,
+				921F8F9822719AB000A981CC /* PresistentService.swift in Sources */,
 				9271409F224E35BD003F0088 /* TabBarVC.swift in Sources */,
 				92935554224CC89B0083B9A5 /* MainBtn.swift in Sources */,
 			);
@@ -677,6 +729,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		921F8F9422719A7200A981CC /* society-connect-app-ios.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				921F8F9522719A7200A981CC /* society-connect-app-ios.xcdatamodel */,
+			);
+			currentVersion = 921F8F9522719A7200A981CC /* society-connect-app-ios.xcdatamodel */;
+			path = "society-connect-app-ios.xcdatamodeld";
+			sourceTree = SOURCE_ROOT;
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9293552A224B8DBE0083B9A5 /* Project object */;
 }

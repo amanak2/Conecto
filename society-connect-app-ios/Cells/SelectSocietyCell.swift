@@ -12,7 +12,7 @@ import SDWebImage
 class SelectSocietyCell: BaseCell {
     
     //MARK: DATA
-    var society: Society? {
+    var society: SocietyModel? {
         didSet {
             titleLbl.text = society?.name
             subtitleLbl.text = "\(society?.address ?? ""), \(society?.city ?? "")"

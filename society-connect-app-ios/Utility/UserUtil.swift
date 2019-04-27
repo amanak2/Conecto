@@ -65,14 +65,23 @@ class UserUtil {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         let date = dateFormatter.date(from: dateStringUTC)!
         
-        let now = Date()
-        let formatter = DateComponentsFormatter()
-        formatter.calendar?.locale = Locale(identifier: "UTC")
-        formatter.unitsStyle = .brief
-        formatter.maximumUnitCount = 2
+//        let now = Date()
+//        let formatter = DateComponentsFormatter()
+//        formatter.calendar?.locale = Locale(identifier: "UTC")
+//        formatter.unitsStyle = .brief
+//        formatter.maximumUnitCount = 2
+//
+//        let str = formatter.string(from: date, to: now)! + " ago"
         
-        let str = formatter.string(from: date, to: now)! + " ago"
+        let elapsedTimeInSeconds = NSDate().timeIntervalSince(date as Date)
+        let secondInDays: TimeInterval = 60*60*24
         
-        return str
+        if elapsedTimeInSeconds > 7 * secondInDays {
+            dateFormatter.dateFormat = "dd/MM/yy"
+        } else if elapsedTimeInSeconds > secondInDays {
+            dateFormatter.dateFormat = "EEE"
+        }
+        
+        return dateFormatter.string(for: date)
     }
 }

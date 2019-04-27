@@ -14,13 +14,13 @@ class FeedCell: BaseCell {
     //MARK: DATA
     var post: Post? {
         didSet {
-            nameLbl.text = post?.user.username
-            postText.text = post?.description
-            subtitleLbl.text = UserUtil.timeAgoInAgo(post!.created)
+            nameLbl.text = post?.user!.username
+            postText.text = post?.desc
+            subtitleLbl.text = UserUtil.timeAgoInAgo(post!.created!)
             likeCount.text = "\(post?.likes ?? 0) Likes"
             
-            let likeImg = post!.likedByCurrentUser ? UIImage(named: "like") : UIImage(named: "unlike")
-            likeBtn.setImage(likeImg, for: .normal)
+            //let likeImg = post!.likedByCurrentUser ? UIImage(named: "like") : UIImage(named: "unlike")
+            //likeBtn.setImage(likeImg, for: .normal)
             
             if let img = post?.photo1 {
                 postImg.sd_setImage(with: URL(string: img), completed: nil)

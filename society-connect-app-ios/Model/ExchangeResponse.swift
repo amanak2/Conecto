@@ -13,9 +13,9 @@ class ExchangeResponse: Codable {
     let count: Int
     let next: String?
     let previous: String?
-    let results: [Exchange]
+    let results: [ExchangeModel]
     
-    init(count: Int, next: String, previous: String, results: [Exchange]) {
+    init(count: Int, next: String, previous: String, results: [ExchangeModel]) {
         self.count = count
         self.next = next
         self.previous = previous

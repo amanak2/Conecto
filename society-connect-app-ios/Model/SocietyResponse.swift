@@ -13,9 +13,9 @@ class SocietyResponse: Codable {
     let count: Int
     let next: String?
     let previous: String?
-    let results: [Society]
+    let results: [SocietyModel]
     
-    init(count: Int, next: String, previous: String, results: [Society]) {
+    init(count: Int, next: String, previous: String, results: [SocietyModel]) {
         self.count = count
         self.next = next
         self.previous = previous

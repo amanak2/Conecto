@@ -13,9 +13,9 @@ class PostResponse: Codable {
     let count: Int
     let next: String?
     let previous: String?
-    let results: [Post]
+    let results: [PostModel]
     
-    init(count: Int, next: String, previous: String, results: [Post]) {
+    init(count: Int, next: String, previous: String, results: [PostModel]) {
         self.count = count
         self.next = next
         self.previous = previous

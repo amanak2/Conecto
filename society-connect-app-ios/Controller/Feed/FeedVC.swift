@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
 class FeedVC: UIViewController, Alertable {
 
     //MARK: VARIABLES
     var response: PostResponse?
+    var posts = [Post]()
     
     //MARK: ELEMENTS
     lazy var collectionView: UICollectionView = {
@@ -38,7 +40,8 @@ class FeedVC: UIViewController, Alertable {
         view.addContraintWithFormat(format: "H:|[v0]|", views: collectionView)
         view.addContraintWithFormat(format: "V:|[v0]|", views: collectionView)
         
-        getFeed()
+        //getFeed()
+        getFeedFromCore()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -99,6 +102,28 @@ class FeedVC: UIViewController, Alertable {
         }
     }
     
+    //MARK: CALL SYNC
+    private func getFeedFromCore() {
+        
+        posts = PresistentService.fetchUserPost()!
+        collectionView.reloadData()
+        
+//        let sync = Synchronizer()
+//
+//        sync.syncUserPost { (posts, error) in
+//
+//            if let error = error {
+//                print(error)
+//            }
+//
+//            if let posts = posts {
+//                self.posts = posts
+//                collectionView.reloadData()
+//            }
+//        }
+        
+    }
+    
     //MARK: ACTION BTNS
     @objc func messageBtnPressed() {
         showAlert("Message", "Message Btn Pressed")
@@ -118,9 +143,7 @@ extension FeedVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollec
         case 0:
             return 1
         default:
-            guard let postCount = response?.results.count else { return 0 }
-            
-            return postCount
+            return posts.count
         }
     }
     
@@ -135,9 +158,8 @@ extension FeedVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollec
         default:
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? FeedCell {
                 
-                guard let posts = response?.results else { return cell }
-                
-                cell.post = posts[indexPath.row]
+                let post = posts[indexPath.row]
+                cell.post = post
                 cell.layoutIfNeeded()
                 
                 return cell
@@ -157,13 +179,13 @@ extension FeedVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollec
             return CGSize(width: width, height: 70)
         default:
             
-            guard let post = response?.results[indexPath.row] else { return CGSize.zero }
+            let post = posts[indexPath.row]
             
             let approximaeWidth = view.frame.width
             let size = CGSize(width: approximaeWidth, height: 1000)
             let attributes = [NSAttributedString.Key.font: Theme.mediumFont]
             
-            let estimatedFrame = NSString(string: post.description!).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
+            let estimatedFrame = NSString(string: post.desc!).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
             
             if post.photo1 != nil {
                 let height = (width) * aspect

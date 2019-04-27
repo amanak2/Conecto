@@ -13,9 +13,9 @@ class UserResponse: Codable {
     let count: Int
     let next: String?
     let previous: String?
-    let results: [User]
+    let results: [UserModel]
     
-    init(count: Int, next: String, previous: String, results: [User]) {
+    init(count: Int, next: String, previous: String, results: [UserModel]) {
         self.count = count
         self.next = next
         self.previous = previous

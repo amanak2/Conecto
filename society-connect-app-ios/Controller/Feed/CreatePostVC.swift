@@ -11,7 +11,7 @@ import UIKit
 class CreatePostVC: UIViewController, UITextViewDelegate, Alertable, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //MARK: DATA
-    var post: Post?
+    var post: PostModel?
     var imagePicker = UIImagePickerController()
     
     //MARK: ELEMENTS
@@ -139,7 +139,7 @@ class CreatePostVC: UIViewController, UITextViewDelegate, Alertable, UIImagePick
             
             if let data = data {
                 do {
-                    let resp = try JSONDecoder().decode(Post.self, from: data)
+                    let resp = try JSONDecoder().decode(PostModel.self, from: data)
                     self.post = resp
                     self.navigationController?.popViewController(animated: true)
                 } catch let err{

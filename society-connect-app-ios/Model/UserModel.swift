@@ -8,10 +8,10 @@
 
 import Foundation
 
-class User: Codable {
+struct UserModel: Codable {
     let username, email: String
     let id: Int
-    let society: Society?
+    let society: SocietyModel?
     let firstName, lastName: String?
     let dateJoined: String
     let profilePic: String?
@@ -22,16 +22,5 @@ class User: Codable {
         case lastName = "last_name"
         case dateJoined = "date_joined"
         case profilePic = "profile_pic"
-    }
-    
-    init(username: String, email: String, id: Int, society: Society, firstName: String, lastName: String, dateJoined: String, profilePic: String) {
-        self.username = username
-        self.email = email
-        self.id = id
-        self.society = society
-        self.firstName = firstName
-        self.lastName = lastName
-        self.dateJoined = dateJoined
-        self.profilePic = profilePic
     }
 }
