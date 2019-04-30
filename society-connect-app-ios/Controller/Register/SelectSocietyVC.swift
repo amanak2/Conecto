@@ -12,7 +12,6 @@ class SelectSocietyVC: UIViewController {
 
     //MARK: VARIABLES
     var response: SocietyResponse?
-    var userResponse: UserResponse?
     var selectedSociety: Int?
     
     //MARK: ELEMENTS
@@ -59,20 +58,23 @@ class SelectSocietyVC: UIViewController {
     
     //MARK: API CALL
     private func getSociety() {
-        
+
         let serverConnect = ServerConnect()
         
-        serverConnect.getRequest(url: "api/v1/society/") { (data, error) in
-            
+        let urlString = "\(BASE_URL)api/v1/society/"
+        let url = URL(string: urlString)
+
+        serverConnect.getRequest(url: url!) { (data, error) in
+
             if let error = error {
                 print(error)
             }
-            
+
             if let data = data {
                 do {
                     let resp = try JSONDecoder().decode(SocietyResponse.self, from: data)
                     self.response = resp
-                    
+
                     DispatchQueue.main.async {
                         self.collectionView.reloadData()
                     }
@@ -89,7 +91,7 @@ class SelectSocietyVC: UIViewController {
         
         let params = ["society": societyID]
         
-        if let userID = userResponse?.results.first?.id {
+        if let userID = UserUtil.fetchInt(forKey: "ME") {
             serverConnect.patchRequest(url: "api/v1/users/\(userID)/", params: params) { (data, error) in
                 if let _ = error {
                     
@@ -105,7 +107,10 @@ class SelectSocietyVC: UIViewController {
     private func getUser() {
         let serverConnect = ServerConnect()
         
-        serverConnect.getRequest(url: "api/v1/users/") { (data, error) in
+        let urlString = "\(BASE_URL)api/v1/users/"
+        let url = URL(string: urlString)
+        
+        serverConnect.getRequest(url: url!) { (data, error) in
             
             if let error = error {
                 print(error)
@@ -114,7 +119,12 @@ class SelectSocietyVC: UIViewController {
             if let data = data {
                 do {
                     let resp = try JSONDecoder().decode(UserResponse.self, from: data)
-                    self.userResponse = resp
+                    
+                    DispatchQueue.main.async {
+                        let id = resp.results.first?.id
+                        UserUtil.saveInt(withValue: id!, forKey: "ME")
+                    }
+                    
                 } catch {
                     print(error)
                 }

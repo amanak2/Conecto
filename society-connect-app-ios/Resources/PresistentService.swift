@@ -69,4 +69,103 @@ class PresistentService {
         
         return nil
     }
+    
+    //MARK: FETCH USER-POST FOR USER
+    static func fetchPost(forUser user: User) -> [Post]? {
+        let fetchRequest = PresistentService.entityFetchRequest(forEntity: "Post")
+        fetchRequest.predicate = NSPredicate(format: "user == %@", user)
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "modified", ascending: false)]
+        var posts = [Post]()
+        
+        do {
+            posts = try PresistentService.context.fetch(fetchRequest) as! [Post]
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        if posts.count >= 0 {
+            return posts
+        }
+        
+        return nil
+    }
+    
+    //MARK: FETCH EXCHANGE
+    static func fetchExchange() -> [Exchange]? {
+        let fetchRequest = PresistentService.entityFetchRequest(forEntity: "Exchange")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "modified", ascending: false)]
+        var exchanges = [Exchange]()
+        
+        do {
+            exchanges = try PresistentService.context.fetch(fetchRequest) as! [Exchange]
+        } catch let err {
+            print(err)
+        }
+        
+        if exchanges.count >= 0 {
+            return exchanges
+        }
+        
+        return nil
+    }
+    
+    //MARK: FETCH USERS
+    static func fetchUsers() -> [User]? {
+        let fetchRequest = PresistentService.entityFetchRequest(forEntity: "User")
+        var users = [User]()
+        
+        do {
+            users = try PresistentService.context.fetch(fetchRequest) as! [User]
+        } catch let err {
+            print(err)
+        }
+        
+        if users.count >= 0 {
+            return users
+        }
+        
+        return nil
+    }
+    
+    //MARK: FETCH USERS BY ID
+    static func fetchUser(byID id: Int32) -> User? {
+        let fetchRequest = PresistentService.entityFetchRequest(forEntity: "User")
+        fetchRequest.predicate = NSPredicate(format: "id == %i", id)
+        var users = [User]()
+        
+        do {
+            users = try PresistentService.context.fetch(fetchRequest) as! [User]
+        } catch let err {
+            print(err)
+        }
+        
+        if users.count >= 0 {
+            return users.first
+        }
+        
+        return nil
+    }
+    
+    //MARK: DELETE ENTITY
+    static func deleteRecords(fromEntity entity: String) {
+        let fetchRequest = PresistentService.entityFetchRequest(forEntity: entity)
+        var records = [AnyObject]()
+        
+        do {
+            records = try PresistentService.context.fetch(fetchRequest)
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        for obj in records {
+            PresistentService.context.delete(obj as! NSManagedObject)
+        }
+        
+        do {
+            try PresistentService.context.save()
+            print("Deleted!")
+        } catch let error as NSError  {
+            print("Could not delete \(error), \(error.userInfo)")
+        }
+    }
 }

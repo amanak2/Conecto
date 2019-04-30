@@ -11,15 +11,20 @@ import UIKit
 class SearchCell: BaseCell {
     
     //MARK: DATA
-    var user: UserModel? {
+    var user: User? {
         didSet {
             usernameLbl.text = user?.username
+            
+            if let p_img = user?.profilePic {
+                profileImg.sd_setImage(with: URL(string: p_img), completed: nil)
+            }
         }
     }
     
     //MARK: ELEMENTS
     let profileImg: UIImageView = {
         let img = UIImageView()
+        img.contentMode = .scaleAspectFill
         img.backgroundColor = UIColor.blue
         img.layer.cornerRadius = 22
         img.clipsToBounds = true

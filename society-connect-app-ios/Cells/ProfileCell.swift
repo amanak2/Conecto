@@ -14,7 +14,7 @@ class ProfileCell: BaseCell {
     //MARK: DATA
     var delegate: CellBtnPress?
     
-    var user: UserModel? {
+    var user: User? {
         didSet {
             if user?.firstName != "" {
                 self.nameLbl.text = "\(user?.firstName ?? "") \(user?.lastName ?? "")"
@@ -28,12 +28,17 @@ class ProfileCell: BaseCell {
             if let img = user?.profilePic {
                 self.profileImg.sd_setImage(with: URL(string: img), completed: nil)
             }
+            
+            if let p_img = user?.profilePic {
+                profileImg.sd_setImage(with: URL(string: p_img), completed: nil)
+            }
         }
     }
     
     //MARK: ELEMENTS
     let profileImg: UIImageView = {
         let img = UIImageView()
+        img.contentMode = .scaleAspectFill
         img.backgroundColor = UIColor.blue
         img.layer.cornerRadius = 30
         img.clipsToBounds = true
@@ -47,7 +52,6 @@ class ProfileCell: BaseCell {
     
     let nameLbl: UILabel = {
         let lbl = UILabel()
-        lbl.text = "Aman Chawla"
         lbl.font = Theme.boldFont
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
@@ -55,7 +59,6 @@ class ProfileCell: BaseCell {
     
     let societyName: UILabel = {
         let lbl = UILabel()
-        lbl.text = "Eldeco Utopia"
         lbl.font = Theme.mediumFont
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.textColor = UIColor.lightGray
@@ -64,7 +67,6 @@ class ProfileCell: BaseCell {
     
     let sectorName: UILabel = {
         let lbl = UILabel()
-        lbl.text = "Sector 93A"
         lbl.font = Theme.mediumFont
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.textColor = UIColor.lightGray

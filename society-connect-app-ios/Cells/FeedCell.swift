@@ -16,14 +16,18 @@ class FeedCell: BaseCell {
         didSet {
             nameLbl.text = post?.user!.username
             postText.text = post?.desc
-            subtitleLbl.text = UserUtil.timeAgoInAgo(post!.created!)
+            subtitleLbl.text = UserUtil.timeAgoSinceDate(fromStringUTC: post!.created!)
             likeCount.text = "\(post?.likes ?? 0) Likes"
             
-            //let likeImg = post!.likedByCurrentUser ? UIImage(named: "like") : UIImage(named: "unlike")
-            //likeBtn.setImage(likeImg, for: .normal)
+            let likeImg = post!.likedByCurrentUser ? UIImage(named: "like") : UIImage(named: "unlike")
+            likeBtn.setImage(likeImg, for: .normal)
             
             if let img = post?.photo1 {
                 postImg.sd_setImage(with: URL(string: img), completed: nil)
+            }
+            
+            if let p_img = post?.user?.profilePic {
+                profileImg.sd_setImage(with: URL(string: p_img), completed: nil)
             }
         }
     }
@@ -32,6 +36,7 @@ class FeedCell: BaseCell {
     let profileImg: UIImageView = {
         let img = UIImageView()
         img.backgroundColor = UIColor.blue
+        img.contentMode = .scaleAspectFill
         img.layer.cornerRadius = 22
         img.clipsToBounds = true
         return img

@@ -11,7 +11,7 @@ import UIKit
 class ExchangeVC: UIViewController {
     
     //MARK: VARIABLES
-    var response: ExchangeResponse?
+    var exchanges = [Exchange]()
     
     //MARK: ELEMENTS
     lazy var collectionView: UICollectionView = {
@@ -25,6 +25,14 @@ class ExchangeVC: UIViewController {
         return cv
     }()
     
+    lazy var refresher: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = UIColor.darkGray
+        refreshControl.addTarget(self, action: #selector(refreshExchange), for: .valueChanged)
+        
+        return refreshControl
+    }()
+    
     //MARK: VIEW CONTROLLER
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +43,14 @@ class ExchangeVC: UIViewController {
         view.addContraintWithFormat(format: "H:|[v0]|", views: collectionView)
         view.addContraintWithFormat(format: "V:|[v0]|", views: collectionView)
         
+        if #available(iOS 10.0, *) {
+            collectionView.refreshControl = refresher
+        } else {
+            collectionView.addSubview(refresher)
+        }
+        
         setupNavbar()
-        getExchange()
+        getFromCore()
     }
     
     private func setupNavbar() {
@@ -51,32 +65,45 @@ class ExchangeVC: UIViewController {
         titleLbl.font = Theme.boldFont
         navigationItem.titleView = titleLbl
     }
+    
+    @objc func refreshExchange() {
+        PresistentService.deleteRecords(fromEntity: "Exchange")
+        UserUtil.removeObj(forKey: "exchangeNextURL")
+        exchanges.removeAll()
+        collectionView.reloadData()
+        
+        getFromCore()
+        
+        //ADDING DELAY
+        let deadline = DispatchTime.now() + .milliseconds(700)
+        DispatchQueue.main.asyncAfter(deadline: deadline) {
+            self.refresher.endRefreshing()
+        }
+    }
 
-    //MARK: API CALL
+    //MARK: SYNC
+    
+    private func getFromCore() {
+        guard PresistentService.fetchExchange()! != [] else { getExchange(); return }
+        self.exchanges = PresistentService.fetchExchange()!
+        self.collectionView.reloadData()
+    }
+    
     private func getExchange() {
+        let sync = Synchronizer()
         
-        let serverConnect = ServerConnect()
-        
-        serverConnect.getRequest(url: "api/v1/exchange-items/?show_society=true") { (data, error) in
-            
+        sync.fetchExchange { (exchanges, error) in
             if let error = error {
-                //self.showAlert("ERROR", "Something went Wrong")
                 print(error)
             }
             
-            if let data = data {
-                do {
-                    let resp = try JSONDecoder().decode(ExchangeResponse.self, from: data)
-                    self.response = resp
-                    
-                    DispatchQueue.main.async {
-                        self.collectionView.reloadData()
-                    }
-                } catch {
-                    print(error)
+            if let exchanges = exchanges {
+                self.exchanges.append(contentsOf: exchanges)
+                
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
                 }
             }
-            
         }
     }
 }
@@ -88,22 +115,29 @@ extension ExchangeVC: UICollectionViewDelegate, UICollectionViewDelegateFlowLayo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let exchnageCount = response?.results.count else { return 0 }
-        
-        return exchnageCount
+        return exchanges.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? ExchangeCell {
             
-            guard let exchange = response?.results[indexPath.row] else { return cell }
-            
+            let exchange = exchanges[indexPath.row]
             cell.exchange = exchange
             
             return cell
         }
         
         return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if collectionView.isDragging == true {
+            if indexPath.row == (exchanges.count - 1) {
+                if UserUtil.fetchString(forKey: "exchangeNextURL") != nil {
+                    self.getExchange()
+                }
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

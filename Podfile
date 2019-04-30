@@ -9,6 +9,7 @@ target 'society-connect-app-ios' do
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'SDWebImage'
+  pod 'IQKeyboardManagerSwift'
 
 
 end

@@ -116,22 +116,32 @@ class CreatePostVC: UIViewController, UITextViewDelegate, Alertable, UIImagePick
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        textView.text = ""
-        textView.textColor = UIColor.black
+        if textView.text == "Whats on your mind?" {
+            textView.text = ""
+            textView.textColor = UIColor.black
+        }
     }
     
     //MARK: API
     private func createPost() {
         
         let serverConnect = ServerConnect()
-        let parameters: [String: Any] = [
+        let parameters: [String: String] = [
             "title": "post",
             "description": postTxt.text ?? "",
             "photo2": "nil",
             "photo3": "nil"
         ]
         
-        serverConnect.postRequest(url: "api/v1/user-post/", params: parameters) { (data, error) in
+        var media = [Media]()
+        if let img = selectedImg.image {
+            let photo1 = Media(withImg: img, forKey: "photo1")
+            media.append(photo1!)
+        } else {
+            media.removeAll()
+        }
+        
+        serverConnect.multipartPostRequest(url: "api/v1/user-post/", method: .post, params: parameters, media: media) { (data, error) in
             
             if let error = error {
                 print(error)
@@ -141,7 +151,10 @@ class CreatePostVC: UIViewController, UITextViewDelegate, Alertable, UIImagePick
                 do {
                     let resp = try JSONDecoder().decode(PostModel.self, from: data)
                     self.post = resp
-                    self.navigationController?.popViewController(animated: true)
+                    
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                    }
                 } catch let err{
                     print(err)
                 }

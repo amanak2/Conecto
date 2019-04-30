@@ -12,7 +12,6 @@ import CoreData
 class FeedVC: UIViewController, Alertable {
 
     //MARK: VARIABLES
-    var response: PostResponse?
     var posts = [Post]()
     
     //MARK: ELEMENTS
@@ -25,6 +24,14 @@ class FeedVC: UIViewController, Alertable {
         cv.delegate = self
         cv.dataSource = self
         return cv
+    }()
+    
+    lazy var refresher: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = UIColor.darkGray
+        refreshControl.addTarget(self, action: #selector(refreshFeed), for: .valueChanged)
+        
+        return refreshControl
     }()
     
     //MARK: VIEW CONTROLLERS
@@ -40,8 +47,13 @@ class FeedVC: UIViewController, Alertable {
         view.addContraintWithFormat(format: "H:|[v0]|", views: collectionView)
         view.addContraintWithFormat(format: "V:|[v0]|", views: collectionView)
         
-        //getFeed()
-        getFeedFromCore()
+        if #available(iOS 10.0, *) {
+            collectionView.refreshControl = refresher
+        } else {
+            collectionView.addSubview(refresher)
+        }
+        
+        fetchFromCore()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -74,54 +86,45 @@ class FeedVC: UIViewController, Alertable {
         self.navigationItem.rightBarButtonItems = [btnItem]
     }
     
-    //MARK: API CALL
-    private func getFeed() {
+    @objc func refreshFeed() {
+        PresistentService.deleteRecords(fromEntity: "Post")
+        UserUtil.removeObj(forKey: "postNextURL")
+        posts.removeAll()
+        collectionView.reloadData()
         
-        let serverConnect = ServerConnect()
+        fetchFromCore()
         
-        serverConnect.getRequest(url: "api/v1/user-post/?show_society=true") { (data, error) in
-            
-            if let error = error {
-                //self.showAlert("ERROR", "Something went Wrong")
-                print(error)
-            }
-            
-            if let data = data {
-                do {
-                    let resp = try JSONDecoder().decode(PostResponse.self, from: data)
-                    self.response = resp
-                    
-                    DispatchQueue.main.async {
-                        self.collectionView.reloadData()
-                    }
-                } catch {
-                    print(error)
-                }
-            }
-            
+        //ADDING DELAY
+        let deadline = DispatchTime.now() + .milliseconds(700)
+        DispatchQueue.main.asyncAfter(deadline: deadline) {
+            self.refresher.endRefreshing()
         }
     }
     
     //MARK: CALL SYNC
-    private func getFeedFromCore() {
+    
+    private func fetchFromCore() {
+        guard PresistentService.fetchUserPost()! != [] else { getFeed(); return }
+        self.posts = PresistentService.fetchUserPost()!
+        self.collectionView.reloadData()
+    }
+    
+    private func getFeed() {
+        let sync = Synchronizer()
         
-        posts = PresistentService.fetchUserPost()!
-        collectionView.reloadData()
-        
-//        let sync = Synchronizer()
-//
-//        sync.syncUserPost { (posts, error) in
-//
-//            if let error = error {
-//                print(error)
-//            }
-//
-//            if let posts = posts {
-//                self.posts = posts
-//                collectionView.reloadData()
-//            }
-//        }
-        
+        sync.fetchUserPost { (posts, error) in
+            if let error = error {
+                print(error)
+            }
+            
+            if let posts = posts {
+                self.posts.append(contentsOf: posts)
+                
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }
+        }
     }
     
     //MARK: ACTION BTNS
@@ -169,6 +172,16 @@ extension FeedVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollec
         return UICollectionViewCell()
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if collectionView.isDragging == true {
+            if indexPath.row == (posts.count - 1) {
+                if UserUtil.fetchString(forKey: "postNextURL") != nil {
+                    self.getFeed()
+                }
+            }
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let aspect: CGFloat = 4/5
@@ -179,15 +192,14 @@ extension FeedVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollec
             return CGSize(width: width, height: 70)
         default:
             
-            let post = posts[indexPath.row]
-            
             let approximaeWidth = view.frame.width
             let size = CGSize(width: approximaeWidth, height: 1000)
             let attributes = [NSAttributedString.Key.font: Theme.mediumFont]
             
-            let estimatedFrame = NSString(string: post.desc!).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
+            let desc = posts[indexPath.row].desc
+            let estimatedFrame = NSString(string: desc!).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
             
-            if post.photo1 != nil {
+            if let _ = posts[indexPath.row].photo1 {
                 let height = (width) * aspect
                 return CGSize(width: width, height: 127 + estimatedFrame.height + height)
             }

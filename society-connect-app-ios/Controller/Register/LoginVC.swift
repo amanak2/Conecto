@@ -10,6 +10,9 @@ import UIKit
 
 class LoginVC: UIViewController, Alertable {
 
+    //MARK: VARIABLES
+    var userResponse: UserResponse?
+    
     //MARK: IBOutlets
     @IBOutlet weak var usernameTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
@@ -61,12 +64,54 @@ class LoginVC: UIViewController, Alertable {
             
             UserUtil.saveBool(withValue: true, forKey: "isLoggedIn")
             
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
-            self.navigationController?.pushViewController(controller, animated: true)
+            getUser()
         }
     }
     
+    private func getUser() {
+        let serverConnect = ServerConnect()
+        
+        let urlString = "\(BASE_URL)api/v1/users/"
+        let url = URL(string: urlString)
+        
+        serverConnect.getRequest(url: url!) { (data, error) in
+            
+            if let error = error {
+                print(error)
+            }
+            
+            if let data = data {
+                do {
+                    let resp = try JSONDecoder().decode(UserResponse.self, from: data)
+                    self.userResponse = resp
+                    
+                    DispatchQueue.main.async {
+                        self.checkUser()
+                        let id = resp.results.first?.id
+                        UserUtil.saveInt(withValue: id!, forKey: "ME")
+                    }
+                } catch {
+                    print(error)
+                }
+            }
+        }
+    }
+    
+    private func checkUser() {
+        
+        let user = userResponse?.results.first
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if user?.society != nil {
+            let controller = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
+            self.navigationController?.pushViewController(controller, animated: true)
+            UserUtil.saveBool(withValue: true, forKey: "isSocietySelected")
+        } else {
+            let controller = storyboard.instantiateViewController(withIdentifier: "SelectSocietyVC")
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
+        
+    }
     
     //MARK: ACTION BTNS
     @IBAction func loginBtnPressed(_ sender: Any) {

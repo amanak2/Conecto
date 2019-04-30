@@ -10,9 +10,20 @@ import UIKit
 
 class CreatePostCell: BaseCell {
     
+    //MARK: DATA
+    var user: User? {
+        didSet {
+            
+            if let p_img = user!.profilePic {
+                profileImg.sd_setImage(with: URL(string: p_img), completed: nil)
+            }
+        }
+    }
+    
     //MARK: ELEMENTS
     let profileImg: UIImageView = {
         let img = UIImageView()
+        img.contentMode = .scaleAspectFill
         img.backgroundColor = UIColor.blue
         img.layer.cornerRadius = 24
         img.clipsToBounds = true

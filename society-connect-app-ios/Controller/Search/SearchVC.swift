@@ -11,7 +11,7 @@ import UIKit
 class SearchVC: UIViewController, UISearchBarDelegate {
 
     //MARK: VARIABLES
-    var response: UserResponse?
+    var users = [User]()
     
     //MARK: ELEMENTS
     lazy var searchBar: UISearchBar = {
@@ -38,7 +38,6 @@ class SearchVC: UIViewController, UISearchBarDelegate {
     //MARK: VIEW CONTROLLER
     override func viewDidLoad() {
         super.viewDidLoad()
-        getUsers()
         
         collectionView.register(SearchCell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.alwaysBounceVertical = true
@@ -48,6 +47,7 @@ class SearchVC: UIViewController, UISearchBarDelegate {
         view.addContraintWithFormat(format: "V:|[v0]|", views: collectionView)
         
         setupNavbar()
+        getFromCore()
     }
 
     private func setupNavbar() {
@@ -62,31 +62,29 @@ class SearchVC: UIViewController, UISearchBarDelegate {
         self.navigationItem.leftBarButtonItem = searchBarItem
     }
     
-    //MARK: API CALL
+    //MARK: SYNC
+    
+    private func getFromCore() {
+        guard PresistentService.fetchExchange()! != [] else { getUsers(); return }
+        self.users = PresistentService.fetchUsers()!
+        self.collectionView.reloadData()
+    }
+    
     private func getUsers() {
+        let sync = Synchronizer()
         
-        let serverConnect = ServerConnect()
-        
-        serverConnect.getRequest(url: "api/v1/users/?show_society=true") { (data, error) in
-            
+        sync.fetchUsers { (users, error) in
             if let error = error {
-                //self.showAlert("ERROR", "Something went Wrong")
                 print(error)
             }
             
-            if let data = data {
-                do {
-                    let resp = try JSONDecoder().decode(UserResponse.self, from: data)
-                    self.response = resp
-                    
-                    DispatchQueue.main.async {
-                        self.collectionView.reloadData()
-                    }
-                } catch {
-                    print(error)
+            if let users = users {
+                self.users.append(contentsOf: users)
+                
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
                 }
             }
-            
         }
     }
 }
@@ -98,21 +96,29 @@ extension SearchVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let userCount = response?.results.count else { return 0 }
-        return userCount
+        return users.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? SearchCell {
             
-            guard let user = response?.results[indexPath.row] else { return cell }
-            
+            let user = users[indexPath.row]
             cell.user = user
             
             return cell
         }
         
         return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if collectionView.isDragging == true {
+            if indexPath.row == (users.count - 1) {
+                if UserUtil.fetchString(forKey: "userNextURL") != nil {
+                    self.getUsers()
+                }
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

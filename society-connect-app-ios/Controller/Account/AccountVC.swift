@@ -14,6 +14,9 @@ class AccountVC: UIViewController, CellBtnPress {
     var userResponse: UserResponse?
     var postResponse: PostResponse?
     
+    var user: User?
+    var posts = [Post]()
+    
     //MARK: ELEMENTS
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -29,10 +32,8 @@ class AccountVC: UIViewController, CellBtnPress {
     //MARK: VIEWCONTROLLER
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        getFeed()
-        getUser()
         setupNavbar()
+        getUserFromCore()
         
         collectionView.register(ProfileCell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: "Cell2")
@@ -52,52 +53,58 @@ class AccountVC: UIViewController, CellBtnPress {
     
     //MARK: API CALLS
     
-    private func getUser() {
-        let serverConnect = ServerConnect()
+    private func getUserFromCore() {
         
-        serverConnect.getRequest(url: "api/v1/users/") { (data, error) in
-            
+        if let id = UserUtil.fetchInt(forKey: "ME") {
+            if let user = PresistentService.fetchUser(byID: Int32(id)) {
+                self.user = user
+                self.getFeedFromCore()
+            } else {
+                getUser()
+            }
+        }
+        
+    }
+    
+    private func getUser() {
+        let sync = Synchronizer()
+        
+        sync.fetchSelf { (user, error) in
             if let error = error {
                 print(error)
             }
             
-            if let data = data {
-                do {
-                    let resp = try JSONDecoder().decode(UserResponse.self, from: data)
-                    self.userResponse = resp
-                    
-                    DispatchQueue.main.async {
-                        self.collectionView.reloadData()
-                    }
-                } catch {
-                    print(error)
+            if let user = user {
+                self.user = user
+                
+                DispatchQueue.main.async {
+                    self.getFeedFromCore()
                 }
             }
         }
     }
     
+    private func getFeedFromCore() {
+        guard PresistentService.fetchPost(forUser: user!)! != [] else { getFeed(); return }
+        self.posts = PresistentService.fetchPost(forUser: user!)!
+        self.collectionView.reloadData()
+    }
+    
     private func getFeed() {
-        let serverConnect = ServerConnect()
+        let sync = Synchronizer()
         
-        serverConnect.getRequest(url: "api/v1/user-post/") { (data, error) in
-            
+        sync.fetchPostForUser { (posts, error) in
             if let error = error {
                 print(error)
             }
             
-            if let data = data {
-                do {
-                    let resp = try JSONDecoder().decode(PostResponse.self, from: data)
-                    self.postResponse = resp
-                    
-                    DispatchQueue.main.async {
-                        self.collectionView.reloadData()
-                    }
-                } catch {
-                    print(error)
+            if let posts = posts {
+                self.posts.append(contentsOf: posts)
+                
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
                 }
             }
-            
         }
     }
     
@@ -116,8 +123,9 @@ class AccountVC: UIViewController, CellBtnPress {
     //MARK: ACTION BTNS
     func btnPressed() {
         let storyboard = UIStoryboard(name: "Account", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "EditProfileVC")
-        self.navigationController?.pushViewController(controller, animated: true)
+        let controller = storyboard.instantiateViewController(withIdentifier: "EditProfileVC") as? EditProfileVC
+        controller?.user = user
+        self.navigationController?.pushViewController(controller!, animated: true)
     }
 }
 
@@ -134,9 +142,7 @@ extension AccountVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         case 0:
             return 1
         default:
-            guard let postCount = postResponse?.results.count else { return 0 }
-            
-            return postCount
+            return posts.count
         }
     }
     
@@ -145,9 +151,7 @@ extension AccountVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         case 0:
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? ProfileCell {
                 
-                guard let user = userResponse?.results[indexPath.row] else { return cell }
-                
-                cell.user = user
+                cell.user = self.user
                 cell.delegate = self
                 
                 return cell
@@ -155,15 +159,24 @@ extension AccountVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         default:
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell2", for: indexPath) as? FeedCell {
                 
-//                guard let post = postResponse?.results[indexPath.row] else { return cell }
-//                
-//                cell.post = post
+                let post = posts[indexPath.row]
+                cell.post = post
                 
                 return cell
             }
         }
         
         return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if collectionView.isDragging == true {
+            if indexPath.row == (posts.count - 1) {
+                if UserUtil.fetchString(forKey: "postForUserNextURL") != nil {
+                    self.getFeed()
+                }
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -176,7 +189,7 @@ extension AccountVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
             return CGSize(width: width, height: 135)
         default:
             
-            guard let post = postResponse?.results[indexPath.row] else { return CGSize.zero }
+            let post = posts[indexPath.row]
             
             let approximaeWidth = view.frame.width
             let size = CGSize(width: approximaeWidth, height: 1000)

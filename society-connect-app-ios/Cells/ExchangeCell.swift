@@ -12,7 +12,7 @@ import SDWebImage
 class ExchangeCell: BaseCell {
     
     //MARK: DATA
-    var exchange: ExchangeModel? {
+    var exchange: Exchange? {
         didSet {
             
             titleLbl.text = exchange?.title
@@ -40,6 +40,7 @@ class ExchangeCell: BaseCell {
     
     let itemImg: UIImageView = {
         let img = UIImageView()
+        img.contentMode = .scaleAspectFit
         img.layer.cornerRadius = 10
         img.backgroundColor = UIColor.blue
         return img

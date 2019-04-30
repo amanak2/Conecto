@@ -8,6 +8,7 @@
 
 import UIKit
 import FacebookCore
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //keyboard manager
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = false
         
         //FB_login
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -36,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let controller = storyboard.instantiateViewController(withIdentifier: "SelectSocietyVC")
                 navigationController = UINavigationController(rootViewController: controller)
                 
-            } else if isSocietySelected == true {
+            } else {
                 let controller = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
                 navigationController = UINavigationController(rootViewController: controller)
             }

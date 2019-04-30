@@ -64,6 +64,7 @@
 		92E7FB1B22589A6C00BDA57A /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92E7FB1A22589A6C00BDA57A /* Search.storyboard */; };
 		92E7FB1F22589B2B00BDA57A /* Exchange.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92E7FB1E22589B2B00BDA57A /* Exchange.storyboard */; };
 		92E7FB2122589B6200BDA57A /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92E7FB2022589B6200BDA57A /* Account.storyboard */; };
+		92FDBA632278588C0044CDC1 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FDBA622278588C0044CDC1 /* Media.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,6 +128,7 @@
 		92E7FB1A22589A6C00BDA57A /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		92E7FB1E22589B2B00BDA57A /* Exchange.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Exchange.storyboard; sourceTree = "<group>"; };
 		92E7FB2022589B6200BDA57A /* Account.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Account.storyboard; sourceTree = "<group>"; };
+		92FDBA622278588C0044CDC1 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		CDEE710D1BF93FB5BA9A8420 /* Pods-society-connect-app-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-society-connect-app-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-society-connect-app-ios/Pods-society-connect-app-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -211,6 +213,7 @@
 				92742C68225A260900F68AFC /* UserModel.swift */,
 				92742C6A225A28DE00F68AFC /* SocietyModel.swift */,
 				92CE4FF5225F429E00634C68 /* ExchangeModel.swift */,
+				92FDBA622278588C0044CDC1 /* Media.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -293,7 +296,6 @@
 				92935551224BA35B0083B9A5 /* ServerConnect.swift */,
 				921F8FCB2271E3D300A981CC /* Synchronizer.swift */,
 				921F8F9722719AB000A981CC /* PresistentService.swift */,
-				92742C5C2258C77800F68AFC /* UIViewExt.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -302,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				92935557224CCE070083B9A5 /* UserUtil.swift */,
+				92742C5C2258C77800F68AFC /* UIViewExt.swift */,
 				92935555224CC9C20083B9A5 /* Alertable.swift */,
 				9293555A224CD1810083B9A5 /* Theme.swift */,
 				921F8F9222708B6E00A981CC /* Protocals.swift */,
@@ -432,6 +435,7 @@
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -443,6 +447,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,6 +488,7 @@
 				92935538224B8DBE0083B9A5 /* LaunchVC.swift in Sources */,
 				92CE4FF0225CBED400634C68 /* SelectSocietyCell.swift in Sources */,
 				92935550224B908D0083B9A5 /* SignupVC.swift in Sources */,
+				92FDBA632278588C0044CDC1 /* Media.swift in Sources */,
 				921F8FC32271E1C000A981CC /* Society+CoreDataProperties.swift in Sources */,
 				92742C6B225A28DE00F68AFC /* SocietyModel.swift in Sources */,
 				921F8FC22271E1C000A981CC /* Society+CoreDataClass.swift in Sources */,
