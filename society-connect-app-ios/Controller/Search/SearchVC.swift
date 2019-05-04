@@ -12,6 +12,7 @@ class SearchVC: UIViewController, UISearchBarDelegate {
 
     //MARK: VARIABLES
     var users = [User]()
+    var searchUser = [User]()
     
     //MARK: ELEMENTS
     lazy var searchBar: UISearchBar = {

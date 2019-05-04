@@ -179,6 +179,16 @@ extension AccountVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Feed", bundle: nil)
+        
+        if indexPath.section == 1 {
+            let controller = storyboard.instantiateViewController(withIdentifier: "PostVC") as? PostVC
+            controller?.post = self.posts[indexPath.row]
+            self.navigationController?.pushViewController(controller!, animated: true)
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let aspect: CGFloat = 4/5

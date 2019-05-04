@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.swift
 //  society-connect-app-ios
 //
-//  Created by Aman Chawla on 25/04/19.
+//  Created by Aman Chawla on 04/05/19.
 //  Copyright © 2019 Aman Chawla. All rights reserved.
 //
 //
@@ -17,16 +17,16 @@ extension User {
         return NSFetchRequest<User>(entityName: "User")
     }
 
-    @NSManaged public var id: Int32
-    @NSManaged public var username: String?
+    @NSManaged public var dateJoined: String?
     @NSManaged public var email: String?
     @NSManaged public var firstName: String?
+    @NSManaged public var id: Int32
     @NSManaged public var lastName: String?
-    @NSManaged public var dateJoined: String?
     @NSManaged public var profilePic: String?
-    @NSManaged public var society: Society?
+    @NSManaged public var username: String?
     @NSManaged public var exchange: NSSet?
     @NSManaged public var post: NSSet?
+    @NSManaged public var society: Society?
 
 }
 

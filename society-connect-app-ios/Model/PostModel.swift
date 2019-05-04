@@ -12,7 +12,7 @@ struct PostModel: Codable {
     let id: Int
     let user: UserModel
     let society: SocietyModel
-    //let comment: Comment
+    //let comment: CommentModel
     let title, photo1, photo2: String?
     let desc: String?
     let photo3: String?

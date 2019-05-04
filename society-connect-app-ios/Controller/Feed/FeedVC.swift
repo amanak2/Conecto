@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class FeedVC: UIViewController, Alertable {
+class FeedVC: UIViewController, Alertable, FeedActionBtns {
 
     //MARK: VARIABLES
     var posts = [Post]()
@@ -132,6 +132,32 @@ class FeedVC: UIViewController, Alertable {
         showAlert("Message", "Message Btn Pressed")
     }
     
+    func commentBtnPressed(forPost postID: Int32) {
+        let storyboard = UIStoryboard(name: "Feed", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "CommentVC") as? CommentVC
+        controller?.postID = postID
+        self.navigationController?.pushViewController(controller!, animated: true)
+    }
+    
+    func likeBtnPressed(forPost postID: Int32) {
+        let serverConnect = ServerConnect()
+        let params: [String: Any] = [
+            "post": Int("\(postID)") as Any
+        ]
+        
+        serverConnect.postRequest(url: "api/v1/like/", params: params) { (data, error) in
+            if let error = error {
+                print(error)
+            }
+            
+            if let _ = data {
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }
+        }
+    }
+    
 }
 
 //MARK: COLLECTION VIEW 
@@ -145,8 +171,10 @@ extension FeedVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollec
         switch section {
         case 0:
             return 1
-        default:
+        case 1:
             return posts.count
+        default:
+            return 0
         }
     }
     
@@ -158,15 +186,17 @@ extension FeedVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollec
                 
                 return cell
             }
-        default:
+        case 1:
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? FeedCell {
                 
                 let post = posts[indexPath.row]
                 cell.post = post
-                cell.layoutIfNeeded()
+                cell.delegate = self
                 
                 return cell
             }
+        default:
+            return UICollectionViewCell()
         }
         
         return UICollectionViewCell()
@@ -200,7 +230,7 @@ extension FeedVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollec
             let estimatedFrame = NSString(string: desc!).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
             
             if let _ = posts[indexPath.row].photo1 {
-                let height = (width) * aspect
+                let height = (width + 16) * aspect
                 return CGSize(width: width, height: 127 + estimatedFrame.height + height)
             }
             
@@ -223,8 +253,9 @@ extension FeedVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollec
             
         default:
             
-            let controller = storyboard.instantiateViewController(withIdentifier: "PostVC")
-            self.navigationController?.pushViewController(controller, animated: true)
+            let controller = storyboard.instantiateViewController(withIdentifier: "PostVC") as? PostVC
+            controller?.post = self.posts[indexPath.row]
+            self.navigationController?.pushViewController(controller!, animated: true)
             
         }
     }

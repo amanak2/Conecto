@@ -11,3 +11,8 @@ import Foundation
 protocol CellBtnPress: class {
     func btnPressed()
 }
+
+protocol FeedActionBtns: class {
+    func commentBtnPressed(forPost postID: Int32)
+    func likeBtnPressed(forPost postID: Int32)
+}

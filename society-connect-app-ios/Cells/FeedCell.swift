@@ -12,6 +12,8 @@ import SDWebImage
 class FeedCell: BaseCell {
     
     //MARK: DATA
+    var delegate: FeedActionBtns? = nil
+    
     var post: Post? {
         didSet {
             nameLbl.text = post?.user!.username
@@ -23,11 +25,11 @@ class FeedCell: BaseCell {
             likeBtn.setImage(likeImg, for: .normal)
             
             if let img = post?.photo1 {
-                postImg.sd_setImage(with: URL(string: img), completed: nil)
+                postImg.sd_setImage(with: URL(string: img))
             }
             
             if let p_img = post?.user?.profilePic {
-                profileImg.sd_setImage(with: URL(string: p_img), completed: nil)
+                profileImg.sd_setImage(with: URL(string: p_img))
             }
         }
     }
@@ -87,18 +89,20 @@ class FeedCell: BaseCell {
     
     let likeCount: UILabel = {
         let lbl = UILabel()
-        lbl.text = "100 Likes"
+        //lbl.text = "100 Likes"
         return lbl
     }()
     
-    let commentBtn: UIButton = {
+    lazy var commentBtn: UIButton = {
         let btn = UIButton()
+        btn.addTarget(self, action: #selector(commentBtnPress), for: .touchUpInside)
         btn.setImage(UIImage(named: "comment"), for: .normal)
         return btn
     }()
     
-    let likeBtn: UIButton = {
+    lazy var likeBtn: UIButton = {
         let btn = UIButton()
+        btn.addTarget(self, action: #selector(likeBtnPressed), for: .touchUpInside)
         btn.setImage(UIImage(named: "unlike"), for: .normal)
         return btn
     }()
@@ -112,7 +116,6 @@ class FeedCell: BaseCell {
         addSubview(postImg)
         addSubview(actionView)
         addSubview(seprationView)
-        setupActionView()
         
         addContraintWithFormat(format: "H:|-8-[v0(44)]", views: profileImg)
         addContraintWithFormat(format: "H:|-8-[v0]-8-|", views: postText)
@@ -124,6 +127,8 @@ class FeedCell: BaseCell {
         addContraintWithFormat(format: "H:|-60-[v0]-8-|", views: nameLbl)
         addContraintWithFormat(format: "H:|-60-[v0]-8-|", views: subtitleLbl)
         addContraintWithFormat(format: "V:|-8-[v0]-2-[v1]", views: nameLbl, subtitleLbl)
+        
+        setupActionView()
     }
     
     private func setupActionView() {
@@ -135,5 +140,14 @@ class FeedCell: BaseCell {
         actionView.addContraintWithFormat(format: "V:|[v0]|", views: commentBtn)
         actionView.addContraintWithFormat(format: "V:|[v0]|", views: likeCount)
         actionView.addContraintWithFormat(format: "H:|-2-[v0]-10-[v1]-10-[v2]", views: likeBtn, commentBtn, likeCount)
+    }
+    
+    //MARK: ACTION BTN
+    @objc func commentBtnPress() {
+        delegate?.commentBtnPressed(forPost: post!.id)
+    }
+    
+    @objc func likeBtnPressed() {
+        delegate?.likeBtnPressed(forPost: post!.id)
     }
 }
