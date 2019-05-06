@@ -25,7 +25,7 @@ class SearchCell: BaseCell {
     let profileImg: UIImageView = {
         let img = UIImageView()
         img.contentMode = .scaleAspectFill
-        img.backgroundColor = UIColor.blue
+        img.backgroundColor = Theme.lightGrey
         img.layer.cornerRadius = 22
         img.clipsToBounds = true
         return img

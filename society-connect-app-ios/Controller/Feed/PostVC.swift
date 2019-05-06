@@ -135,13 +135,6 @@ class PostVC: UIViewController {
     }
     
     private func setupNavbar() {
-        
-        let titleLbl = UILabel()
-        titleLbl.textColor = UIColor.white
-        titleLbl.text = "Post"
-        titleLbl.font = Theme.boldFont
-        navigationItem.titleView = titleLbl
-        
         let btn = UIButton()
         btn.setTitle("Back", for: .normal)
         btn.tintColor = Theme.whiteColor

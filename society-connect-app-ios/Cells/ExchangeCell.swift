@@ -40,9 +40,10 @@ class ExchangeCell: BaseCell {
     
     let itemImg: UIImageView = {
         let img = UIImageView()
-        img.contentMode = .scaleAspectFit
+        img.contentMode = .scaleAspectFill
+        img.clipsToBounds = true
         img.layer.cornerRadius = 10
-        img.backgroundColor = UIColor.blue
+        img.backgroundColor = Theme.lightGrey
         return img
     }()
     

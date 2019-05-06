@@ -53,6 +53,13 @@ class ExchangeVC: UIViewController {
         getFromCore()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = false
+        navigationController?.hidesBarsOnSwipe = true
+    }
+    
     private func setupNavbar() {
         
         navigationController?.navigationBar.barTintColor = Theme.tintColor
@@ -153,5 +160,12 @@ extension ExchangeVC: UICollectionViewDelegate, UICollectionViewDelegateFlowLayo
         let width = (view.frame.width - 32) / 2
         
         return CGSize(width: width, height: 250)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Exchange", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "ItemVC") as? ItemVC
+        controller?.exchange = exchanges[indexPath.row]
+        self.navigationController?.pushViewController(controller!, animated: true)
     }
 }

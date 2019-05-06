@@ -51,7 +51,7 @@
         <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="exchange" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Exchange" inverseName="society" inverseEntity="Exchange" syncable="YES"/>
         <relationship name="post" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Post" inverseName="society" inverseEntity="Post" syncable="YES"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="society" inverseEntity="User" syncable="YES"/>
+        <relationship name="user" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="society" inverseEntity="User" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
@@ -78,7 +78,7 @@
     <elements>
         <element name="Exchange" positionX="-375.921875" positionY="98.51171875" width="128" height="255"/>
         <element name="Post" positionX="-180.671875" positionY="472.9453125" width="128" height="268"/>
-        <element name="Society" positionX="-163.45703125" positionY="123.71875" width="128" height="165"/>
+        <element name="Society" positionX="-198.2890625" positionY="108.54296875" width="128" height="163"/>
         <element name="User" positionX="89.62109375" positionY="151.13671875" width="128" height="193"/>
     </elements>
 </model>

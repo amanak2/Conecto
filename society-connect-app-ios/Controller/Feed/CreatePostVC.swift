@@ -11,13 +11,13 @@ import UIKit
 class CreatePostVC: UIViewController, UITextViewDelegate, Alertable, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //MARK: DATA
-    var post: PostModel?
     var imagePicker = UIImagePickerController()
+    let context = PresistentService.context
     
     //MARK: ELEMENTS
     let profileImg: UIImageView = {
         let img = UIImageView()
-        img.backgroundColor = UIColor.blue
+        img.backgroundColor = Theme.lightGrey
         img.layer.cornerRadius = 24
         img.clipsToBounds = true
         return img
@@ -26,7 +26,6 @@ class CreatePostVC: UIViewController, UITextViewDelegate, Alertable, UIImagePick
     let usernameLbl: UILabel = {
         let lbl = UILabel()
         lbl.font = Theme.mediumFont
-        lbl.text = "username"
         return lbl
     }()
     
@@ -50,6 +49,10 @@ class CreatePostVC: UIViewController, UITextViewDelegate, Alertable, UIImagePick
     //MARK VIEW CONTROLLER
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let id = UserUtil.fetchInt(forKey: "ME")
+        let user = PresistentService.fetchUser(byID: Int32(id!))
+        usernameLbl.text = user?.username
         
         setupView()
         setupNavbar()
@@ -149,8 +152,7 @@ class CreatePostVC: UIViewController, UITextViewDelegate, Alertable, UIImagePick
             
             if let data = data {
                 do {
-                    let resp = try JSONDecoder().decode(PostModel.self, from: data)
-                    self.post = resp
+                    let _ = try JSONDecoder().decode(PostModel.self, from: data)
                     
                     DispatchQueue.main.async {
                         self.navigationController?.popViewController(animated: true)

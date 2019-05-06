@@ -51,6 +51,18 @@ class AccountVC: UIViewController, CellBtnPress {
         navigationController?.hidesBarsOnSwipe = true
     }
     
+    private func setupNavbar() {
+        navigationController?.navigationBar.barTintColor = Theme.tintColor
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.hidesBarsOnSwipe = true
+        
+        let titleLbl = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width - 32, height: view.frame.height))
+        titleLbl.textColor = UIColor.white
+        titleLbl.text = "Account"
+        titleLbl.font = Theme.boldFont
+        navigationItem.titleView = titleLbl
+    }
+    
     //MARK: API CALLS
     
     private func getUserFromCore() {
@@ -58,6 +70,8 @@ class AccountVC: UIViewController, CellBtnPress {
         if let id = UserUtil.fetchInt(forKey: "ME") {
             if let user = PresistentService.fetchUser(byID: Int32(id)) {
                 self.user = user
+                
+                print(user.society?.id)
                 self.getFeedFromCore()
             } else {
                 getUser()
@@ -106,18 +120,6 @@ class AccountVC: UIViewController, CellBtnPress {
                 }
             }
         }
-    }
-    
-    private func setupNavbar() {
-        navigationController?.navigationBar.barTintColor = Theme.tintColor
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.hidesBarsOnSwipe = true
-        
-        let titleLbl = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width - 32, height: view.frame.height))
-        titleLbl.textColor = UIColor.white
-        titleLbl.text = "Account"
-        titleLbl.font = Theme.boldFont
-        navigationItem.titleView = titleLbl
     }
     
     //MARK: ACTION BTNS

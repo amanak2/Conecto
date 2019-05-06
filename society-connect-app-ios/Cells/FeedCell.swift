@@ -16,7 +16,7 @@ class FeedCell: BaseCell {
     
     var post: Post? {
         didSet {
-            nameLbl.text = post?.user!.username
+            nameLbl.text = post?.user?.username
             postText.text = post?.desc
             subtitleLbl.text = UserUtil.timeAgoSinceDate(fromStringUTC: post!.created!)
             likeCount.text = "\(post?.likes ?? 0) Likes"
@@ -37,7 +37,7 @@ class FeedCell: BaseCell {
     //MARK: ELEMENTS
     let profileImg: UIImageView = {
         let img = UIImageView()
-        img.backgroundColor = UIColor.blue
+        img.backgroundColor = Theme.lightGrey
         img.contentMode = .scaleAspectFill
         img.layer.cornerRadius = 22
         img.clipsToBounds = true
@@ -148,6 +148,7 @@ class FeedCell: BaseCell {
     }
     
     @objc func likeBtnPressed() {
+        likeCount.text = "\((post!.likes + 1)) Likes"
         delegate?.likeBtnPressed(forPost: post!.id)
     }
 }

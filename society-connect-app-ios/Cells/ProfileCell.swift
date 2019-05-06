@@ -39,7 +39,7 @@ class ProfileCell: BaseCell {
     let profileImg: UIImageView = {
         let img = UIImageView()
         img.contentMode = .scaleAspectFill
-        img.backgroundColor = UIColor.blue
+        img.backgroundColor = Theme.lightGrey
         img.layer.cornerRadius = 30
         img.clipsToBounds = true
         return img

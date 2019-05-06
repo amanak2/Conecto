@@ -37,12 +37,14 @@ class EditProfileVC: UIViewController, Alertable, UIImagePickerControllerDelegat
         userImg.layer.cornerRadius = userImg.frame.height / 2
         userImg.clipsToBounds = true
         userImg.contentMode = .scaleAspectFill
+        userImg.backgroundColor = Theme.lightGrey
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         tabBarController?.tabBar.isHidden = true
+        navigationController?.isNavigationBarHidden = false
         navigationController?.hidesBarsOnSwipe = false
     }
     
@@ -89,13 +91,13 @@ class EditProfileVC: UIViewController, Alertable, UIImagePickerControllerDelegat
     private func updateProfile() {
         
         let serverConnect = ServerConnect()
-        let id = user?.id ?? 0
+        let id = user?.id
         
         let parameters: [String: String] = [
             "username": usernameTF.text ?? "",
             "email": emailTF.text ?? "",
             "first_name": firstNameTF.text ?? "",
-            "last_name": lastNameTF.text ?? "",
+            "last_name": lastNameTF.text ?? ""
         ]
         
         var media = [Media]()
@@ -106,7 +108,7 @@ class EditProfileVC: UIViewController, Alertable, UIImagePickerControllerDelegat
             media.removeAll()
         }
         
-        serverConnect.multipartPostRequest(url: "api/v1/users/\(id)/", method: .patch, params: parameters, media: media) { (data, error) in
+        serverConnect.multipartPostRequest(url: "api/v1/users/\(id!)/", method: .patch, params: parameters, media: media) { (data, error) in
             
             if let error = error {
                 print(error)

@@ -2,7 +2,7 @@
 //  Society+CoreDataProperties.swift
 //  society-connect-app-ios
 //
-//  Created by Aman Chawla on 25/04/19.
+//  Created by Aman Chawla on 06/05/19.
 //  Copyright © 2019 Aman Chawla. All rights reserved.
 //
 //
@@ -17,14 +17,14 @@ extension Society {
         return NSFetchRequest<Society>(entityName: "Society")
     }
 
-    @NSManaged public var id: Int32
-    @NSManaged public var name: String?
     @NSManaged public var address: String?
     @NSManaged public var city: String?
+    @NSManaged public var id: Int32
+    @NSManaged public var name: String?
     @NSManaged public var state: String?
-    @NSManaged public var user: User?
     @NSManaged public var exchange: NSSet?
     @NSManaged public var post: NSSet?
+    @NSManaged public var user: NSSet?
 
 }
 
@@ -59,5 +59,22 @@ extension Society {
 
     @objc(removePost:)
     @NSManaged public func removeFromPost(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for user
+extension Society {
+
+    @objc(addUserObject:)
+    @NSManaged public func addToUser(_ value: User)
+
+    @objc(removeUserObject:)
+    @NSManaged public func removeFromUser(_ value: User)
+
+    @objc(addUser:)
+    @NSManaged public func addToUser(_ values: NSSet)
+
+    @objc(removeUser:)
+    @NSManaged public func removeFromUser(_ values: NSSet)
 
 }

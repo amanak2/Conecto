@@ -74,7 +74,7 @@ class PresistentService {
     static func fetchPost(forUser user: User) -> [Post]? {
         let fetchRequest = PresistentService.entityFetchRequest(forEntity: "Post")
         fetchRequest.predicate = NSPredicate(format: "user == %@", user)
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "modified", ascending: false)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "created", ascending: false)]
         var posts = [Post]()
         
         do {

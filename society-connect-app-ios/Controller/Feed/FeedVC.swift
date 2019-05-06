@@ -151,9 +151,7 @@ class FeedVC: UIViewController, Alertable, FeedActionBtns {
             }
             
             if let _ = data {
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
+                
             }
         }
     }
