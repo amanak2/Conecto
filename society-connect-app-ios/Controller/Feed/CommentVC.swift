@@ -96,7 +96,8 @@ class CommentVC: UIViewController, Alertable {
         navigationItem.titleView = titleLbl
         
         let btn = UIButton()
-        btn.setTitle("Back", for: .normal)
+        let btnImg = UIImage(named: "back")?.withRenderingMode(.alwaysTemplate)
+        btn.setImage(btnImg, for: .normal)
         btn.tintColor = Theme.whiteColor
         btn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         btn.addTarget(self, action: #selector(backBtn), for: .touchUpInside)

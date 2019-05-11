@@ -71,7 +71,20 @@ class ExchangeVC: UIViewController {
         titleLbl.text = "Exchange"
         titleLbl.font = Theme.boldFont
         navigationItem.titleView = titleLbl
+        
+        let btn = UIButton()
+        let btnImg = UIImage(named: "add")?.withRenderingMode(.alwaysTemplate)
+        btn.setImage(btnImg, for: .normal)
+        btn.tintColor = Theme.whiteColor
+        btn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        btn.addTarget(self, action: #selector(handleAddItem), for: .touchUpInside)
+        let btnItem = UIBarButtonItem()
+        btnItem.customView = btn
+        
+        self.navigationItem.rightBarButtonItems = [btnItem]
     }
+    
+    //MARK: ACTION
     
     @objc func refreshExchange() {
         PresistentService.deleteRecords(fromEntity: "Exchange")
@@ -87,7 +100,13 @@ class ExchangeVC: UIViewController {
             self.refresher.endRefreshing()
         }
     }
-
+    
+    @objc func handleAddItem() {
+        let storyboard = UIStoryboard(name: "Exchange", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "CreateExchangeVC")
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
     //MARK: SYNC
     
     private func getFromCore() {

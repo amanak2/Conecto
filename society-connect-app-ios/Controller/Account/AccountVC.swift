@@ -70,8 +70,6 @@ class AccountVC: UIViewController, CellBtnPress {
         if let id = UserUtil.fetchInt(forKey: "ME") {
             if let user = PresistentService.fetchUser(byID: Int32(id)) {
                 self.user = user
-                
-                print(user.society?.id)
                 self.getFeedFromCore()
             } else {
                 getUser()

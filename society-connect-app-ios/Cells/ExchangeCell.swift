@@ -61,6 +61,12 @@ class ExchangeCell: BaseCell {
     }()
     
     //MARK: CELL
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.itemImg.image = nil
+        self.itemImg.sd_cancelCurrentImageLoad()
+    }
+    
     override func setupView() {
         addSubview(cardView)
         cardView.addSubview(containerView)

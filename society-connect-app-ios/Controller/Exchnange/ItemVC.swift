@@ -27,6 +27,16 @@ class ItemVC: UIViewController {
                 itemImg.sd_setImage(with: URL(string: img), completed: nil)
             }
             
+            if exchange?.user?.firstName != "" {
+                self.usernameLbl.text = "\(exchange?.user?.firstName ?? "") \(exchange?.user?.lastName ?? "")"
+            } else {
+                self.usernameLbl.text = exchange?.user?.username
+            }
+            
+            if let userImg = exchange?.user?.profilePic {
+                profileImg.sd_setImage(with: URL(string: userImg), completed: nil)
+            }
+            
         }
     }
     
@@ -72,6 +82,40 @@ class ItemVC: UIViewController {
         return lbl
     }()
     
+    let seprationView: UIView = {
+        let view = UIView()
+        view.backgroundColor = Theme.lightGrey
+        return view
+    }()
+    
+    let userView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    let postedByLbl: UILabel = {
+        let lbl = UILabel()
+        lbl.text = "posted by:"
+        lbl.font = Theme.smallFont
+        lbl.textColor = UIColor.gray
+        return lbl
+    }()
+    
+    let profileImg: UIImageView = {
+        let img = UIImageView()
+        img.contentMode = .scaleAspectFill
+        img.backgroundColor = Theme.lightGrey
+        img.layer.cornerRadius = 22
+        img.clipsToBounds = true
+        return img
+    }()
+    
+    let usernameLbl: UILabel = {
+        let lbl = UILabel()
+        lbl.font = Theme.largeFont
+        return lbl
+    }()
+    
     lazy var contactBtn: MainBtn = {
         let btn = MainBtn()
         btn.setTitle("Contact Seller", for: .normal)
@@ -100,7 +144,8 @@ class ItemVC: UIViewController {
     
     private func setupNavbar() {
         let btn = UIButton()
-        btn.setTitle("Back", for: .normal)
+        let btnImg = UIImage(named: "back")?.withRenderingMode(.alwaysTemplate)
+        btn.setImage(btnImg, for: .normal)
         btn.tintColor = Theme.whiteColor
         btn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         btn.addTarget(self, action: #selector(backBtn), for: .touchUpInside)
@@ -115,6 +160,9 @@ class ItemVC: UIViewController {
         contentView.addSubview(itemNameLbl)
         contentView.addSubview(priceLbl)
         contentView.addSubview(descLbl)
+        contentView.addSubview(seprationView)
+        contentView.addSubview(postedByLbl)
+        contentView.addSubview(userView)
         contentView.addSubview(contactBtn)
         
         let approximaeWidth = view.frame.width
@@ -133,7 +181,7 @@ class ItemVC: UIViewController {
             imgHeight = (width) * aspect
         }
         
-        contentViewSize = CGSize(width: width, height: 120 + descHeight + imgHeight)
+        contentViewSize = CGSize(width: width, height: 220 + descHeight + imgHeight)
         scrollView.contentSize = contentViewSize
         contentView.frame.size = contentViewSize
         
@@ -141,15 +189,34 @@ class ItemVC: UIViewController {
         contentView.addContraintWithFormat(format: "H:|-8-[v0]-8-|", views: itemNameLbl)
         contentView.addContraintWithFormat(format: "H:|-8-[v0]-8-|", views: priceLbl)
         contentView.addContraintWithFormat(format: "H:|-8-[v0]-8-|", views: descLbl)
+        contentView.addContraintWithFormat(format: "H:|[v0]|", views: seprationView)
+        contentView.addContraintWithFormat(format: "H:|-8-[v0]-8-|", views: postedByLbl)
+        contentView.addContraintWithFormat(format: "H:|-8-[v0]-8-|", views: userView)
         contentView.addContraintWithFormat(format: "H:|-8-[v0]-8-|", views: contactBtn)
         
         contentView.addContraintWithFormat(format: "V:|[v0(\(imgHeight))]", views: itemImg)
         contentView.addContraintWithFormat(format: "V:[v0(36)]", views: contactBtn)
+        contentView.addContraintWithFormat(format: "V:[v0(60)]", views: userView)
+        contentView.addContraintWithFormat(format: "V:[v0(1)]", views: seprationView)
         
         itemNameLbl.topAnchor.constraint(equalToSystemSpacingBelow: itemImg.bottomAnchor, multiplier: 1).isActive = true
         priceLbl.topAnchor.constraint(equalToSystemSpacingBelow: itemNameLbl.bottomAnchor, multiplier: 1).isActive = true
         descLbl.topAnchor.constraint(equalToSystemSpacingBelow: priceLbl.bottomAnchor, multiplier: 1).isActive = true
-        contactBtn.topAnchor.constraint(equalToSystemSpacingBelow: descLbl.bottomAnchor, multiplier: 1).isActive = true
+        seprationView.topAnchor.constraint(equalToSystemSpacingBelow: descLbl.bottomAnchor, multiplier: 1).isActive = true
+        postedByLbl.topAnchor.constraint(equalToSystemSpacingBelow: seprationView.bottomAnchor, multiplier: 1).isActive = true
+        userView.topAnchor.constraint(equalToSystemSpacingBelow: postedByLbl.bottomAnchor, multiplier: 1).isActive = true
+        contactBtn.topAnchor.constraint(equalToSystemSpacingBelow: userView.bottomAnchor, multiplier: 1).isActive = true
+        
+        setupUserView()
+    }
+    
+    private func setupUserView() {
+        userView.addSubview(profileImg)
+        userView.addSubview(usernameLbl)
+        
+        userView.addContraintWithFormat(format: "H:|[v0(44)]-8-[v1]|", views: profileImg, usernameLbl)
+        userView.addContraintWithFormat(format: "V:|[v0]|", views: usernameLbl)
+        userView.addContraintWithFormat(format: "V:|-8-[v0(44)]", views: profileImg)
     }
     
     //MARK: ACTION BTN

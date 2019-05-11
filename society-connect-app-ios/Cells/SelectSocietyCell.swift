@@ -62,6 +62,12 @@ class SelectSocietyCell: BaseCell {
     }()
     
     //MARK: CELL
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.imgView.image = nil
+        self.imgView.sd_cancelCurrentImageLoad()
+    }
+    
     override func setupView() {
         addSubview(cardView)
         cardView.addSubview(containerView)

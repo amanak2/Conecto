@@ -45,6 +45,12 @@ class SearchCell: BaseCell {
     }()
     
     //MARK: CELL
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.profileImg.image = nil
+        self.profileImg.sd_cancelCurrentImageLoad()
+    }
+    
     override func setupView() {
         addSubview(profileImg)
         addSubview(usernameLbl)

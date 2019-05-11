@@ -108,6 +108,15 @@ class FeedCell: BaseCell {
     }()
     
     //MARK: CELL
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.postImg.image = nil
+        self.profileImg.image = nil
+        
+        self.postImg.sd_cancelCurrentImageLoad()
+        self.profileImg.sd_cancelCurrentImageLoad()
+    }
+    
     override func setupView() {
         addSubview(profileImg)
         addSubview(nameLbl)
@@ -122,7 +131,7 @@ class FeedCell: BaseCell {
         addContraintWithFormat(format: "H:|[v0]|", views: postImg)
         addContraintWithFormat(format: "H:|-8-[v0]-8-|", views: actionView)
         addContraintWithFormat(format: "H:|[v0]|", views: seprationView)
-        addContraintWithFormat(format: "V:|-8-[v0(44)]-8-[v1]-10-[v2]-8-[v3(35)]-8-[v4(1)]|", views: profileImg, postText, postImg, actionView, seprationView)
+        addContraintWithFormat(format: "V:|-8-[v0(44)]-8-[v1]-10-[v2]-8-[v3(26)]-8-[v4(10)]|", views: profileImg, postText, postImg, actionView, seprationView)
         
         addContraintWithFormat(format: "H:|-60-[v0]-8-|", views: nameLbl)
         addContraintWithFormat(format: "H:|-60-[v0]-8-|", views: subtitleLbl)
@@ -139,7 +148,7 @@ class FeedCell: BaseCell {
         actionView.addContraintWithFormat(format: "V:|[v0]|", views: likeBtn)
         actionView.addContraintWithFormat(format: "V:|[v0]|", views: commentBtn)
         actionView.addContraintWithFormat(format: "V:|[v0]|", views: likeCount)
-        actionView.addContraintWithFormat(format: "H:|-2-[v0]-10-[v1]-10-[v2]", views: likeBtn, commentBtn, likeCount)
+        actionView.addContraintWithFormat(format: "H:|-2-[v0(26)]-10-[v1(26)]-10-[v2]", views: likeBtn, commentBtn, likeCount)
     }
     
     //MARK: ACTION BTN
